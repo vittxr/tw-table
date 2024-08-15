@@ -2,10 +2,35 @@
   "name": "tw-table",
   "version": "1.0.0",
   "description": "table designed with tailwind and tanstack-table.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rollup": "rollup -c"
   },
-  "author": "vschirmer",
-  "license": "ISC"
+  "author": "Vitor Schirmer",
+  "license": "ISC",
+  "dependencies": {
+    "@tanstack/react-table": "^8.20.1",
+    "clsx": "^2.1.1",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.3.3",
+    "rollup": "^4.20.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "tslib": "^2.6.3"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/types/index.d.ts"
 }
