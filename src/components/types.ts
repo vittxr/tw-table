@@ -1,4 +1,4 @@
-import { RowSelectionState, SortingState } from '@tanstack/react-table';
+import { OnChangeFn, RowSelectionState, SortingState } from '@tanstack/react-table';
 
 export type Sort = {
   state: SortingState;

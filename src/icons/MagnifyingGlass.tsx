@@ -1,6 +1,8 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+    className?: string;
+}
 
 const MagnifyingGlass = (props: Props) => {
   return (

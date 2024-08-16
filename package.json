@@ -1,31 +1,48 @@
 {
   "name": "tw-table",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "table designed with tailwind and tanstack-table.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "rollup": "rollup -c"
+    "rollup": "rollup -c",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "author": "Vitor Schirmer",
   "license": "ISC",
-  "dependencies": {
-    "@tanstack/react-table": "^8.20.1",
-    "clsx": "^2.1.1",
-    "react": "^18.3.1"
-  },
   "devDependencies": {
+    "@babel/preset-env": "^7.25.3",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@storybook/addon-essentials": "8.2.9",
+    "@storybook/addon-interactions": "8.2.9",
+    "@storybook/addon-links": "8.2.9",
+    "@storybook/blocks": "8.2.9",
+    "@storybook/react": "8.2.9",
+    "@storybook/react-vite": "^8.2.9",
+    "@storybook/react-webpack5": "8.2.9",
+    "@storybook/testing-library": "0.0.14-next.2",
+    "@tanstack/react-table": "^8.20.1",
     "@types/react": "^18.3.3",
+    "autoprefixer": "^10.4.20",
+    "clsx": "^2.1.1",
+    "postcss": "^8.4.41",
+    "prop-types": "15.8.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "rollup": "^4.20.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "8.2.9",
+    "tailwindcss": "^3.4.10",
+    "tslib": "^2.6.3",
     "typescript": "^5.5.4"
   },
   "peerDependencies": {
-    "tslib": "^2.6.3"
+    "react": "^18.3.1"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
