@@ -12,6 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.25.3",
+    "@chromatic-com/storybook": "^1.6.1",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
@@ -22,8 +23,7 @@
     "@storybook/blocks": "8.2.9",
     "@storybook/react": "8.2.9",
     "@storybook/react-vite": "^8.2.9",
-    "@storybook/react-webpack5": "8.2.9",
-    "@storybook/testing-library": "0.0.14-next.2",
+    "@storybook/test": "^8.2.9",
     "@tanstack/react-table": "^8.20.1",
     "@types/react": "^18.3.3",
     "autoprefixer": "^10.4.20",
