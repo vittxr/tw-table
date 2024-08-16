@@ -1,6 +1,4 @@
-// import type { StorybookConfig } from "@storybook/react-webpack5";
-import { StorybookConfig } from '@storybook/react-vite';
- 
+import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -8,10 +6,23 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@chromatic-com/storybook"
   ],
-  framework: '@storybook/react-vite', // 👈 Add this
-  docs: {
-    autodocs: "tag",
+  framework: {
+    name: '@storybook/react-vite',
+    options: {}
   },
+  core: {
+    builder: {
+      name: '@storybook/builder-vite',
+      options: {
+        viteConfigPath: './vite.config.ts',
+      },
+    },
+  },
+  docs: {},
 };
+
+
+
 export default config;

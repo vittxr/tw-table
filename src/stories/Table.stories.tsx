@@ -1,7 +1,7 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
-import Table from '@/Table'; 
-import { ColumnDef } from '@tanstack/react-table';
+import React from "react";
+import { Meta, StoryFn } from "@storybook/react";
+import Table from "@/Table";
+import { ColumnDef } from "@tanstack/react-table";
 
 type DataType = {
   id: number;
@@ -11,27 +11,27 @@ type DataType = {
 
 const columns: ColumnDef<DataType>[] = [
   {
-    header: 'ID',
-    accessorKey: 'id',
+    header: "ID",
+    accessorKey: "id",
   },
   {
-    header: 'Name',
-    accessorKey: 'name',
+    header: "Name",
+    accessorKey: "name",
   },
   {
-    header: 'Age',
-    accessorKey: 'age',
+    header: "Age",
+    accessorKey: "age",
   },
 ];
 
 const data: DataType[] = [
-  { id: 1, name: 'John Doe', age: 25 },
-  { id: 2, name: 'Jane Smith', age: 30 },
-  { id: 3, name: 'Alice Johnson', age: 22 },
+  { id: 1, name: "John Doe", age: 25 },
+  { id: 2, name: "Jane Smith", age: 30 },
+  { id: 3, name: "Alice Johnson", age: 22 },
 ];
 
 export default {
-  title: 'Components/Table',
+  title: "Components/Table",
   component: Table,
   argTypes: {
     // Add any props you want to control in Storybook
@@ -44,7 +44,7 @@ export const Default = Template.bind({});
 Default.args = {
   columns,
   data,
-  title: 'User Table',
+  title: "User Table",
   columnFilters: [],
   setColumnFilters: () => {},
   search: {
