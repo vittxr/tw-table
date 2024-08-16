@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import Table from '../Table'; 
+import Table from '@/Table'; 
 import { ColumnDef } from '@tanstack/react-table';
 
 type DataType = {

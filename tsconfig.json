@@ -17,5 +17,11 @@
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true,
     "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   }
 }

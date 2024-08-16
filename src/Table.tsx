@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import './index.css'
+import '@/index.css'
 import {
   getCoreRowModel,
   useReactTable,
@@ -12,7 +12,7 @@ import {
   ColumnFiltersState,
 } from '@tanstack/react-table';
 // import Pagination, { TPagination } from './components/Pagination';
-import { TableRow, TableHead, Pagination } from './components/';
+import { TableRow, TableHead, Pagination } from '@/components/';
 import React from 'react';
 
 type Props<TData> = {
