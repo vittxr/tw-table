@@ -40,8 +40,8 @@ export default {
 
 const Template: StoryFn = (args) => <Table {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const ServerSideTable = Template.bind({});
+ServerSideTable.args = {
   columns,
   data,
   title: "User Table",
@@ -62,11 +62,4 @@ Default.args = {
     onPageChange: () => {},
   },
   isLoading: false,
-};
-
-export const Loading = Template.bind({});
-Loading.args = {
-  ...Default.args,
-  isLoading: true,
-  data: [],
 };

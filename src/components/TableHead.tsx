@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { flexRender, HeaderGroup } from '@tanstack/react-table';
 import TableFilter from './TableFilter';
 import Icon from '../icons';
-// import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-// import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/16/solid';
-
 
 type Props<TData> = {
   headerGroup: HeaderGroup<TData>;
@@ -19,7 +16,10 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
         <th
           key={header.id}
           className="px-3.5 py-2 text-left min-w-48 max-w-48 h-14"
-          onBlur={() => setTargetSearchCol(null)}
+          onBlur={() => { 
+            if(header.column.getFilterValue()) return
+            setTargetSearchCol(null)
+          }}
         >
           {targetSearchCol !== header.id && (
             <div className="flex justify-between items-center">

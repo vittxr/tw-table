@@ -9,7 +9,7 @@ interface Props extends ComponentProps<'input'> {
   // required?: boolean;
   className?: string;
   // onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  isLOADING_TEXT?: boolean;
+  isLoading?: boolean;
   errorMsg?: string;
   // onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
@@ -24,7 +24,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
       required = false,
       className = '',
       onChange,
-      isLOADING_TEXT = false,
+      isLoading = false,
       errorMsg,
       onKeyDown,
       autoFocus = false,
@@ -42,7 +42,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
       setInputValue(defaultValue);
     }, [defaultValue]);
 
-    if (isLOADING_TEXT) {
+    if (isLoading) {
       return (
         <input
           className='block w-full px-3 py-2 border-2 border-gray-300 rounded-md skeleton'

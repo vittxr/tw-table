@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import '@/index.css'
 import {
   getCoreRowModel,
@@ -10,6 +9,8 @@ import {
   getPaginationRowModel,
   ColumnFilter,
   ColumnFiltersState,
+  SortingState,
+  PaginationState,
 } from '@tanstack/react-table';
 // import Pagination, { TPagination } from './components/Pagination';
 import { TableRow, TableHead, Pagination } from '@/components/';
@@ -19,69 +20,44 @@ type Props<TData> = {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
   title?: string;
-  search?: any;
-  sort?: any;
-  selection?: any;
   toolbar?: React.ReactNode;
-  pagination?: any;
   isLoading?: boolean;
-  columnFilters: ColumnFilter[];
-  setColumnFilters: OnChangeFn<ColumnFiltersState>;
+  serverSide?: boolean
 };
 
 const Table = <TData extends object>({
   columns,
   data,
-  search,
-  sort,
-  selection,
   toolbar,
   title,
-  pagination,
-  isLoading,
-  columnFilters,
-  setColumnFilters,
+  serverSide = false
 }: Props<TData>) => {
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  })
+  
   const table = useReactTable({
     columns,
     data,
+    filterFns: {},
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
+    getFilteredRowModel: getFilteredRowModel(), // client side filtering
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    enableRowSelection: !!selection,
-    enableMultiRowSelection: selection?.type === 'multiple',
-    manualSorting: true,
+    onSortingChange: setSorting,
+    onPaginationChange: setPagination,
     state: {
-      rowSelection: selection?.state,
-      sorting: sort?.state,
+      sorting,
+      pagination, 
       columnFilters,
     },
-    onRowSelectionChange: selection?.setState,
-    enableSortingRemoval: false,
-    onSortingChange: sort?.setState,
-    manualFiltering: true,
-    onColumnFiltersChange: setColumnFilters,
   });
-
-  useEffect(() => {
-    search?.setState({
-      ...search.state,
-      q: columnFilters
-        .map((filter) => `${filter.id} LIKE '${filter.value}%'`)
-        .join(','),
-    });
-  }, [columnFilters]);
-
-  useEffect(() => {
-    search?.setState({
-      ...search?.state,
-      order_by: sort?.state.map((order: any) => order.id).join(','),
-      order: sort?.state
-        .map((order: any) => (order.desc ? 'desc' : 'asc'))
-        .join(','),
-    });
-  }, [sort?.state]);
 
   return (
     <div className="flex flex-col flex-end">
@@ -104,7 +80,7 @@ const Table = <TData extends object>({
                 table
                   .getRowModel()
                   .rows.map((row) => (
-                    <TableRow key={row.id} row={row} selection={selection} />
+                    <TableRow key={row.id} row={row}  />
                   ))
               ) : (
                 <tr className="text-center h-32">
@@ -118,10 +94,7 @@ const Table = <TData extends object>({
 
       {pagination && (
         <Pagination
-          currentPage={pagination.currentPage}
-          rowsCount={pagination.rowsCount}
-          pageRange={pagination.pageRange}
-          onPageChange={pagination.onPageChange}
+          table={table}
         />
       )}
     </div>

@@ -29,7 +29,9 @@ export default function TableFilter<TData>({
   ) : (
     <Input
       className="border-none animate-scale-x"
-      onChange={(value) => column.setFilterValue(value)}
+      onChange={(e) => {
+        column.setFilterValue(e.target.value) 
+      }}
       placeholder={`${column.columnDef.header}...`}
       type="text"
       value={(columnFilterValue ?? '') as string}
