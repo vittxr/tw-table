@@ -3,11 +3,9 @@ import {
   getCoreRowModel,
   useReactTable,
   ColumnDef,
-  OnChangeFn,
   getFilteredRowModel,
   getSortedRowModel,
   getPaginationRowModel,
-  ColumnFilter,
   ColumnFiltersState,
   SortingState,
   PaginationState,
@@ -20,7 +18,6 @@ type Props<TData> = {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
   title?: string;
-  toolbar?: React.ReactNode;
   isLoading?: boolean;
   serverSide?: boolean
 };
@@ -28,8 +25,6 @@ type Props<TData> = {
 const Table = <TData extends object>({
   columns,
   data,
-  toolbar,
-  title,
   serverSide = false
 }: Props<TData>) => {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -40,7 +35,6 @@ const Table = <TData extends object>({
     pageIndex: 0,
     pageSize: 10,
   })
-  
   const table = useReactTable({
     columns,
     data,
@@ -61,11 +55,6 @@ const Table = <TData extends object>({
 
   return (
     <div className="flex flex-col flex-end">
-      <div className="flex justify-between items-center my-2">
-        <h2 className="font-medium text-xl">{title}</h2>
-        {toolbar}
-      </div>
-
       <div className="overflow-x-auto">
         <div className="shadow overflow-x-auto border-b border-gray-200 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">

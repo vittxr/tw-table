@@ -57,7 +57,6 @@ export const ClientSideTable = Template.bind({});
 ClientSideTable.args = {
   columns,
   data,
-  title: "User Table",
   columnFilters: [],
   setColumnFilters: () => {},
   search: {
