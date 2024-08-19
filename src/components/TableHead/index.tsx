@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { flexRender, HeaderGroup } from '@tanstack/react-table';
-import TableFilter from './TableFilter';
-import Icon from '../icons';
+import TableFilter from '@/components/TableFilter';
+import Icon from '@/icons';
 
 type Props<TData> = {
   headerGroup: HeaderGroup<TData>;
