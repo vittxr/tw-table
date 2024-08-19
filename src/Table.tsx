@@ -10,7 +10,6 @@ import {
   SortingState,
   PaginationState,
 } from '@tanstack/react-table';
-// import Pagination, { TPagination } from './components/Pagination';
 import { TableRow, TableHead, Pagination } from '@/components/';
 import React from 'react';
 
