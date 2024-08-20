@@ -34,8 +34,7 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
                       setTargetSearchCol(header.id)
                     }
                   >
-                    {/* <MagnifyingGlassIcon className="w-4 h-4" /> */}
-                    <Icon name="magnifying-glass" className="h-5 w-5" />
+                    <Icon name="magnifying-glass" className="h-3 w-3" />
                   </button>
                 )}
 
@@ -46,9 +45,9 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
                       onClick={() => header.column.toggleSorting()}
                     >
                       {header.column.getIsSorted() === 'desc' ? (
-                        <Icon name="chevron-down" className="h-5 w-5" />
+                        <Icon name="chevron-down" className="h-3 w-3" />
                       ) : (
-                        <Icon name="chevron-up" className="h-5 w-5" />
+                        <Icon name="chevron-up" className="h-3 w-3" />
                       )}
                     </button>
                   </div>
