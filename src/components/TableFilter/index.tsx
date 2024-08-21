@@ -12,7 +12,7 @@ export default function TableFilter<TData>({
 }: {
   column: Column<TData, unknown>;
 }) {
-  const columnFilterValue = column.getFilterValue();
+  const columnFilterValue = column.getFilterValue() as string;
   const { filterVariant } = (column.columnDef.meta as ExtendedColumnMeta) ?? {};
 
   return filterVariant === 'range' ? (
