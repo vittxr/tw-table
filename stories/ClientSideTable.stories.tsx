@@ -2,9 +2,9 @@ import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { Table } from "../src/";
 import { ColumnDef } from "@tanstack/react-table";
-import { mock } from './mock'
+import { users } from './mocks/users'
 
-type DataType = {
+type User = {
   user_id: number;
   username: string;
   full_name: string;
@@ -17,7 +17,7 @@ type DataType = {
   last_login: string;
 };
 
-const columns: ColumnDef<DataType>[] = [
+const columns: ColumnDef<User>[] = [
   {
     header: "User ID",
     accessorKey: "user_id",
@@ -41,18 +41,18 @@ const columns: ColumnDef<DataType>[] = [
   {
     header: "Bio",
     accessorKey: "bio",
-    enableSorting: false, // Assuming you don't want to enable sorting on the bio
+    enableSorting: false, 
   },
   {
     header: "Followers Count",
     accessorKey: "followers_count",
-    enableColumnFilter: false, // Disabling the column filter for followers count
+    enableColumnFilter: false,
   },
   {
     header: "Profile Picture",
     accessorKey: "profile_pic",
-    cell: ({ getValue }) => <img src={getValue() as string} alt="Profile" />, // Custom rendering for the image
-    enableSorting: false, // Disabling sorting for profile pictures
+    cell: ({ getValue }) => <img src={getValue() as string} alt="Profile" />,
+    enableSorting: false,
   },
   {
     header: "Status",
@@ -79,5 +79,5 @@ export const ClientSideTable = Template.bind({});
 
 ClientSideTable.args = {
   columns,
-  data: mock,
+  data: users,
 };
