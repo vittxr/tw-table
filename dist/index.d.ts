@@ -1,1 +1,3 @@
-export { default as Table } from './Table';
+import Table from './components/Table';
+import './index.css';
+export { Table };
