@@ -5,18 +5,18 @@
   "author": "Vitor Schirmer",
   "license": "MIT",
   "main": "./dist/index.js",
-  "module": "./dist/button-lib.esm.js",
+  "module": "./dist/tw-table.esm.js",
   "files": [
     "dist",
     "src"
   ],
   "size-limit": [
     {
-      "path": "./dist/button-lib.cjs.production.min.js",
+      "path": "./dist/tw-table.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "./dist/button-lib.esm.js",
+      "path": "./dist/tw-table.esm.js",
       "limit": "10 KB"
     }
   ],
