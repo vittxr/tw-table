@@ -1,3 +1,4 @@
+import React from 'react';
 import '@/index.css'
 import {
   getCoreRowModel,
@@ -11,13 +12,11 @@ import {
   PaginationState,
 } from '@tanstack/react-table';
 import { TableRow, TableHead, Pagination } from '@/components/';
-import React from 'react';
+
 
 type Props<TData> = {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
-  title?: string;
-  isLoading?: boolean;
   serverSide?: boolean
 };
 
@@ -37,7 +36,7 @@ const Table = <TData extends object>({
   const table = useReactTable({
     columns,
     data,
-    filterFns: {},
+    filterFns: {}, // devs can pass advanced filter functions here
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(), // client side filtering
@@ -50,7 +49,10 @@ const Table = <TData extends object>({
       pagination, 
       columnFilters,
     },
+    enableSortingRemoval: false,
   });
+
+  console.log('sorting', sorting)
 
   return (
     <div className="flex flex-col flex-end">
