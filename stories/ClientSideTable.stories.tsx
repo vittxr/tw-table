@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import Table from "../src/Table";
+import { Table } from "../src/";
 import { ColumnDef } from "@tanstack/react-table";
 import { mock } from './mock'
 

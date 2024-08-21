@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   getCoreRowModel,
   useReactTable,
@@ -11,7 +10,9 @@ import {
   SortingState,
   PaginationState,
 } from '@tanstack/react-table';
-import { TableRow, TableHead, Pagination } from './components/';
+import TableRow from './TableRow';
+import TableHead from './TableHead';
+import Pagination from './Pagination';
 
 
 type Props<TData> = {
