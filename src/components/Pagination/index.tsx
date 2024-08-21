@@ -1,4 +1,4 @@
-import Icon from '@/icons'
+import Icon from '../../icons'
 import { Table } from '@tanstack/react-table'
 import React from 'react'
 import PageControls from './fragments/PageControls'

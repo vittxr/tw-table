@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, flexRender } from '@tanstack/react-table';
-import { Selection } from '@/components/types';
+import { Selection } from '../../components/types';
 import clsx from 'clsx';
 
 type Props<TData> = {

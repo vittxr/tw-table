@@ -1,5 +1,5 @@
 import React from 'react';
-import '@/index.css'
+import './index.css'
 import {
   getCoreRowModel,
   useReactTable,
@@ -11,7 +11,7 @@ import {
   SortingState,
   PaginationState,
 } from '@tanstack/react-table';
-import { TableRow, TableHead, Pagination } from '@/components/';
+import { TableRow, TableHead, Pagination } from './components/';
 
 
 type Props<TData> = {
@@ -23,7 +23,7 @@ type Props<TData> = {
 const Table = <TData extends object>({
   columns,
   data,
-  serverSide = false
+  // serverSide = false
 }: Props<TData>) => {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
