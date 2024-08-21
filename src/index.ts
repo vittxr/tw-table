@@ -1,4 +1,4 @@
-import Table from './components/Table';
 import './index.css'
+// import { Table, TableProps } from './components/Table';
 
-export { Table }
+export * from './components/Table';

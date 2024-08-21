@@ -1,6 +1,6 @@
 import React from "react";
-import { Meta, StoryFn } from "@storybook/react";
-import { Table } from "../src/";
+import { Meta } from "@storybook/react";
+import { Table, TableProps } from "../src/";
 import { ColumnDef } from "@tanstack/react-table";
 import { users } from './mocks/users'
 
@@ -64,18 +64,24 @@ const columns: ColumnDef<User>[] = [
   },
 ];
 
-
 export default {
   title: "Components/Table",
   component: Table,
   argTypes: {
-    // Add any props you want to control in Storybook
+    columns: {
+      control: {
+        type: "object",
+      },
+    },
+    data: {
+      control: {
+        type: "object",
+      },
+    },
   },
 } as Meta;
 
-const Template: StoryFn = (args) => <Table {...args} />;
-
-export const ClientSideTable = Template.bind({});
+export const ClientSideTable = (args: TableProps<User>) => <Table {...args} />;
 
 ClientSideTable.args = {
   columns,

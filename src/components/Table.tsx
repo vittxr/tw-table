@@ -15,17 +15,17 @@ import TableHead from './TableHead';
 import Pagination from './Pagination';
 
 
-type Props<TData> = {
+export interface TableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
   serverSide?: boolean
 };
 
-const Table = <TData extends object>({
+export const Table = <TData extends object>({
   columns,
   data,
   // serverSide = false
-}: Props<TData>) => {
+}: TableProps<TData>) => {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
@@ -52,8 +52,6 @@ const Table = <TData extends object>({
     },
     enableSortingRemoval: false,
   });
-
-  console.log('sorting', sorting)
 
   return (
     <div className="flex flex-col flex-end">
@@ -91,5 +89,3 @@ const Table = <TData extends object>({
     </div>
   );
 };
-
-export default Table;
