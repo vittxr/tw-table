@@ -2,16 +2,9 @@ import React from 'react';
 import { useState, useEffect, useRef, forwardRef, ComponentProps } from 'react';
 
 interface Props extends ComponentProps<'input'> {
-  // id: string;
-  // type: HTMLInputTypeAttribute;
-  // placeholder: string;
-  // defaultValue?: string;
-  // required?: boolean;
   className?: string;
-  // onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   isLoading?: boolean;
   errorMsg?: string;
-  // onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
@@ -22,10 +15,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
       placeholder,
       defaultValue = '',
       required = false,
-      className = '',
       onChange,
       isLoading = false,
-      errorMsg,
       onKeyDown,
       autoFocus = false,
     },
