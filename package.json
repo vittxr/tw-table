@@ -1,6 +1,6 @@
 {
   "name": "tw-table",
-  "version": "1.0.0-beta",
+  "version": "1.0.1-beta",
   "description": "table designed with tailwind and tanstack-table.",
   "keywords": [
     "react",
