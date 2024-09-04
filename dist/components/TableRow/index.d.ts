@@ -1,9 +1,10 @@
 import React from 'react';
 import { Row } from '@tanstack/react-table';
-import { Selection } from '../../components/types';
+import { ResponsivenessType, Selection } from '../../components/types';
 declare type Props<TData> = {
     row: Row<TData>;
     selection?: Selection;
+    responsivenessType?: ResponsivenessType;
 };
-declare const TableRow: <TData extends object>({ row, selection }: Props<TData>) => React.JSX.Element;
+declare const TableRow: <TData extends object>({ row, selection, responsivenessType }: Props<TData>) => React.JSX.Element;
 export default TableRow;
