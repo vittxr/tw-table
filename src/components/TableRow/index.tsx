@@ -15,7 +15,7 @@ const TableRow = <TData extends object>({ row, selection, responsivenessType }: 
   return ( 
     <tr
       className={clsx(
-        'border border-gray-200 hover:bg-gray-100',
+        'border-gray-200',
         selection && row.getIsSelected() && 'bg-sky-100',
         responsivenessType && MOBILE_TABLE_ROW_CLASSNAMES[responsivenessType]
       )}
