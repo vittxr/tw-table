@@ -1,8 +1,10 @@
 // import eslintConfigPrettier from "eslint-config-prettier";
 import js from "@eslint/js";
+import eslintConfigReactApp from "eslint-config-react-app";
 
 export default [
     js.configs.recommended,
+    eslintConfigReactApp,
     {
         files: ["**/*.js","**/*.ts", "**/*.tsx"],
     },
