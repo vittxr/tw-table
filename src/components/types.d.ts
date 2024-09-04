@@ -24,4 +24,4 @@ export type Selection = {
   setState: OnChangeFn<RowSelectionState>;
 };
 
-export type ResponsivenessType = 'card' | null;
+export type ResponsivenessType = 'card' | 'scroll' | null;
