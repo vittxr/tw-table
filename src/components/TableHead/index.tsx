@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import { flexRender, HeaderGroup } from '@tanstack/react-table';
 import TableFilter from '../TableFilter';
 import Icon from '../../icons';
+import clsx from 'clsx';
+import { MOBILE_TABLE_ROW_CLASSNAMES } from '../tw_classnames';
+import { ResponsivenessType } from '../types';
 
 type Props<TData> = {
   headerGroup: HeaderGroup<TData>;
+  responsivenessType?: ResponsivenessType;
 };
 
 const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
   const [targetSearchCol, setTargetSearchCol] = useState<string | null>(null);
 
   return (
-    <tr key={headerGroup.id} className="w-full">
+    <tr key={headerGroup.id} className={clsx("w-full", MOBILE_TABLE_ROW_CLASSNAMES)}>
       {headerGroup.headers.map((header) => (
         <th
           key={header.id}
@@ -20,6 +24,7 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
             if(header.column.getFilterValue()) return
             setTargetSearchCol(null)
           }}
+          scope='col'
         >
           {targetSearchCol !== header.id && (
             <div className="flex justify-between items-center">

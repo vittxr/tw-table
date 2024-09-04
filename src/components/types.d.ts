@@ -23,3 +23,5 @@ export type Selection = {
   state: RowSelectionState;
   setState: OnChangeFn<RowSelectionState>;
 };
+
+export type ResponsivenessType = 'card' | null;

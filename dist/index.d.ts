@@ -1,3 +1,2 @@
-import Table from './components/Table';
 import './index.css';
-export { Table };
+export * from './components/Table';

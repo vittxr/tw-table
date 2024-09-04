@@ -1,25 +1,30 @@
 import React from 'react';
 import { Row, flexRender } from '@tanstack/react-table';
-import { Selection } from '../../components/types';
+import { ResponsivenessType, Selection } from '../../components/types';
 import clsx from 'clsx';
+import { MOBILE_TABLE_DESCRIPTION_CLASSNAMES, MOBILE_TABLE_ROW_CLASSNAMES } from '../tw_classnames';
 
 type Props<TData> = {
   row: Row<TData>;
   selection?: Selection;
+  responsivenessType?: ResponsivenessType;
 };
 
-const TableRow = <TData extends object>({ row, selection }: Props<TData>) => {
-  return (
+const TableRow = <TData extends object>({ row, selection, responsivenessType }: Props<TData>) => {
+  console.log('row', row);
+  return ( 
     <tr
       className={clsx(
         'border border-gray-200 hover:bg-gray-100',
         selection && row.getIsSelected() && 'bg-sky-100',
+        responsivenessType && MOBILE_TABLE_ROW_CLASSNAMES[responsivenessType]
       )}
     >
       {row.getVisibleCells().map((cell, idx: number) => (
         <td
           key={cell.id}
-          className="px-3.5 py-2 min-w-48 h-14 whitespace-nowrap"
+          data-label={cell.column.columnDef.header}
+          className={clsx("px-3.5 py-2 min-w-48 h-14 whitespace-nowrap", responsivenessType && MOBILE_TABLE_DESCRIPTION_CLASSNAMES[responsivenessType])}
         >
           {idx === 0 && selection && (
             <input

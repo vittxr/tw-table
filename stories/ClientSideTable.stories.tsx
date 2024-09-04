@@ -65,7 +65,7 @@ const columns: ColumnDef<User>[] = [
 ];
 
 export default {
-  title: "Components/Table",
+  title: "Components/ClientSideTable",
   component: Table,
   argTypes: {
     columns: {
@@ -81,9 +81,9 @@ export default {
   },
 } as Meta;
 
-export const ClientSideTable = (args: TableProps<User>) => <Table {...args} />;
+export const TableStory = (args: TableProps<User>) => <Table {...args} />;
 
-ClientSideTable.args = {
+TableStory.args = {
   columns,
   data: users,
 };
