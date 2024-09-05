@@ -17,28 +17,27 @@ import clsx from 'clsx';
 import { MOBILE_TABLE_HEAD_CLASSNAMES } from './tw_classnames';
 import { ResponsivenessType } from './types';
 
-
 export interface TableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
-  serverSide?: boolean 
-  responsivenessType?: ResponsivenessType // I'll add more options in the future.
-};
+  serverSide?: boolean;
+  responsivenessType?: ResponsivenessType; // I'll add more options in the future.
+}
 
 export const Table = <TData extends object>({
   columns,
   data,
-  responsivenessType = "card",
+  responsivenessType = 'card',
   // serverSide = false
 }: TableProps<TData>) => {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
-  const [sorting, setSorting] = React.useState<SortingState>([])
+    [],
+  );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
-  })
+  });
   const table = useReactTable({
     columns,
     data,
@@ -52,7 +51,7 @@ export const Table = <TData extends object>({
     onPaginationChange: setPagination,
     state: {
       sorting,
-      pagination, 
+      pagination,
       columnFilters,
     },
     enableSortingRemoval: false,
@@ -63,9 +62,19 @@ export const Table = <TData extends object>({
       <div className="overflow-x-auto">
         <div className="shadow overflow-x-auto border-b border-gray-200 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className={clsx("bg-gray-50 border", responsivenessType && MOBILE_TABLE_HEAD_CLASSNAMES[responsivenessType])}>
+            <thead
+              className={clsx(
+                'bg-gray-50 border',
+                responsivenessType &&
+                  MOBILE_TABLE_HEAD_CLASSNAMES[responsivenessType],
+              )}
+            >
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableHead key={headerGroup.id} headerGroup={headerGroup} responsivenessType={responsivenessType}/>
+                <TableHead
+                  key={headerGroup.id}
+                  headerGroup={headerGroup}
+                  responsivenessType={responsivenessType}
+                />
               ))}
             </thead>
 
@@ -74,7 +83,11 @@ export const Table = <TData extends object>({
                 table
                   .getRowModel()
                   .rows.map((row) => (
-                    <TableRow key={row.id} row={row} responsivenessType={responsivenessType} />
+                    <TableRow
+                      key={row.id}
+                      row={row}
+                      responsivenessType={responsivenessType}
+                    />
                   ))
               ) : (
                 <tr className="text-center h-32">
@@ -86,11 +99,7 @@ export const Table = <TData extends object>({
         </div>
       </div>
 
-      {pagination && (
-        <Pagination
-          table={table}
-        />
-      )}
+      {pagination && <Pagination table={table} />}
     </div>
   );
 };
