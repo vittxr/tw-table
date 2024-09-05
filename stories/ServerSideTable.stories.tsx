@@ -94,12 +94,13 @@ export const TableStory = () => {
       pagination={{
         pageIndex: 1,
         pageSize: PAGE_SIZE,
-        totalRows: data?.count / PAGE_SIZE,
-        onPrevious: () => {},
-        onNext: () => {},
-        onLimitChange: () => {},
-        onSearch: (col: keyof Book, value: string) => {},
-        onSort: (col: keyof Book, direction: 'asc' | 'desc') => {},
+
+        // totalRows: data?.count / PAGE_SIZE,
+        // onPrevious: () => {},
+        // onNext: () => {},
+        // onLimitChange: () => {},
+        // onSearch: (col: keyof Book, value: string) => {},
+        // onSort: (col: keyof Book, direction: 'asc' | 'desc') => {},
       }}
     />
   );
