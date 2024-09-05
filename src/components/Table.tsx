@@ -20,15 +20,15 @@ import { ResponsivenessType } from './types';
 export interface TableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
-  serverSide?: boolean;
   responsivenessType?: ResponsivenessType; // I'll add more options in the future.
+  serverSide?: boolean;
 }
 
 export const Table = <TData extends object>({
   columns,
   data,
   responsivenessType = 'card',
-  // serverSide = false
+  serverSide = false,
 }: TableProps<TData>) => {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
@@ -55,6 +55,7 @@ export const Table = <TData extends object>({
       columnFilters,
     },
     enableSortingRemoval: false,
+    manualPagination: serverSide,
   });
 
   return (
