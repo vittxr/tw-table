@@ -10,6 +10,7 @@ import {
   ColumnFiltersState,
   SortingState,
   PaginationState,
+  OnChangeFn,
 } from '@tanstack/react-table';
 import TableRow from './TableRow';
 import TableHead from './TableHead';
@@ -23,6 +24,8 @@ export interface TableProps<TData> {
   responsivenessType?: ResponsivenessType; // I'll add more options in the future.
   serverSide?: boolean;
   pagination?: PaginationState;
+  setPagination?: OnChangeFn<PaginationState> | undefined;
+  rowCount?: number;
 }
 
 export const Table = <TData extends object>({
@@ -31,15 +34,17 @@ export const Table = <TData extends object>({
   responsivenessType = 'card',
   serverSide = false,
   pagination,
+  setPagination,
+  rowCount = 0,
 }: TableProps<TData>) => {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [_pagination, setPagination] = React.useState<PaginationState>({
+  // local pagination, used if `serverSide` is set to false.
+  const [_pagination, _setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
-    ...(pagination ? pagination : {}),
   });
   const table = useReactTable({
     columns,
@@ -47,20 +52,23 @@ export const Table = <TData extends object>({
     filterFns: {}, // devs can pass advanced filter functions here
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(), // client side filtering
+    getFilteredRowModel: !serverSide ? getFilteredRowModel() : undefined,
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    getPaginationRowModel: !serverSide ? getPaginationRowModel() : undefined,
     onSortingChange: setSorting,
-    onPaginationChange: setPagination,
+    onPaginationChange: !serverSide ? _setPagination : setPagination,
     state: {
       sorting,
-      pagination,
+      pagination: !serverSide ? _pagination : pagination,
       columnFilters,
     },
+    rowCount: !serverSide ? undefined : rowCount,
     enableSortingRemoval: false,
     manualPagination: serverSide,
   });
 
+  console.log('serverSide: ', serverSide);
+  console.log('data: ', data);
   return (
     <div className="flex flex-col flex-end">
       <div className="overflow-x-auto">
@@ -103,7 +111,7 @@ export const Table = <TData extends object>({
         </div>
       </div>
 
-      {pagination && <Pagination table={table} />}
+      <Pagination table={table} />
     </div>
   );
 };
