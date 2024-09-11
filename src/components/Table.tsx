@@ -41,9 +41,8 @@ export const Table = <TData extends object>({
   columnFilters,
   setColumnFilters,
 }: TableProps<TData>) => {
-  // const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-  //   [],
-  // );
+  const [_columnFilters, _setColumnFilters] =
+    React.useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   // local pagination, used if `serverSide` is set to false.
   const [_pagination, _setPagination] = React.useState<PaginationState>({
@@ -54,7 +53,7 @@ export const Table = <TData extends object>({
     columns,
     data,
     filterFns: {}, // devs can pass advanced filter functions here
-    onColumnFiltersChange: setColumnFilters,
+    onColumnFiltersChange: !serverSide ? _setColumnFilters : setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: !serverSide ? getFilteredRowModel() : undefined,
     getSortedRowModel: getSortedRowModel(),
@@ -64,7 +63,7 @@ export const Table = <TData extends object>({
     state: {
       sorting,
       pagination: !serverSide ? _pagination : pagination,
-      columnFilters,
+      columnFilters: !serverSide ? _columnFilters : columnFilters,
     },
     rowCount: !serverSide ? undefined : rowCount,
     enableSortingRemoval: false,
