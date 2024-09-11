@@ -70,8 +70,6 @@ export const Table = <TData extends object>({
     manualPagination: serverSide,
   });
 
-  console.log('serverSide: ', serverSide);
-  console.log('data: ', data);
   return (
     <div className="flex flex-col flex-end">
       <div className="overflow-x-auto">
