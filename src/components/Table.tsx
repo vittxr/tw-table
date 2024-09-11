@@ -26,6 +26,8 @@ export interface TableProps<TData> {
   pagination?: PaginationState;
   setPagination?: OnChangeFn<PaginationState> | undefined;
   rowCount?: number;
+  columnFilters?: ColumnFiltersState;
+  setColumnFilters?: OnChangeFn<ColumnFiltersState>;
 }
 
 export const Table = <TData extends object>({
@@ -36,10 +38,12 @@ export const Table = <TData extends object>({
   pagination,
   setPagination,
   rowCount = 0,
+  columnFilters,
+  setColumnFilters,
 }: TableProps<TData>) => {
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  );
+  // const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+  //   [],
+  // );
   const [sorting, setSorting] = React.useState<SortingState>([]);
   // local pagination, used if `serverSide` is set to false.
   const [_pagination, _setPagination] = React.useState<PaginationState>({

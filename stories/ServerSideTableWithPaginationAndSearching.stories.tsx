@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Meta } from '@storybook/react';
 import { Table } from '../src';
-import { ColumnDef, PaginationState } from '@tanstack/react-table';
+import {
+  ColumnDef,
+  ColumnFiltersState,
+  PaginationState,
+} from '@tanstack/react-table';
 
 const API_ENDPOINT = 'https://gutendex.com/books?';
 const PAGE_SIZE = 32;
-
-async function getData({ page = 1 }: { page: number }): Promise<any> {
-  const response = await fetch(
-    API_ENDPOINT + new URLSearchParams({ page: page.toString() }),
-  );
-  const data = await response.json();
-  return data;
-}
 
 type Person = {
   name: string;
@@ -38,18 +34,35 @@ type Book = {
   download_count: number;
 };
 
+async function getData({
+  page = 1,
+  search = '',
+}: {
+  page?: number;
+  search?: string;
+}): Promise<any> {
+  const searchParams = new URLSearchParams({
+    page: page.toString(),
+    search: search,
+  });
+  console.log(searchParams.toString());
+  const response = await fetch(API_ENDPOINT + searchParams);
+  const data = await response.json();
+  return data;
+}
+
 const columns: ColumnDef<Book>[] = [
   {
     header: 'Title',
     accessorKey: 'title',
     enableSorting: false,
-    enableColumnFilter: false,
   },
   {
     header: 'Subjects',
     accessorKey: 'subjects',
     cell: ({ row }) => row.original.subjects.join(', '), // Display array of subjects
     enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     header: 'Authors',
@@ -57,7 +70,6 @@ const columns: ColumnDef<Book>[] = [
     cell: ({ row }) =>
       row.original.authors.map((author) => author.name).join(', '), // Display array of author names
     enableSorting: false,
-    enableColumnFilter: false,
   },
   {
     header: 'Download Count',
@@ -68,7 +80,7 @@ const columns: ColumnDef<Book>[] = [
 ];
 
 export default {
-  title: 'Components/ServerSideTable',
+  title: 'Components/ServerSideTableWithPaginationAndSearching',
   component: Table,
   argTypes: {
     columns: {
@@ -86,10 +98,11 @@ export default {
 
 export const TableStory = () => {
   const [data, setData] = useState({ results: [], count: 0 });
-  const [pagination, setPagination] = React.useState<PaginationState>({
+  const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: PAGE_SIZE,
   });
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   useEffect(() => {
     getData({ page: pagination.pageIndex + 1 }).then((data) => {
@@ -97,7 +110,13 @@ export const TableStory = () => {
     });
   }, [pagination]);
 
-  console.log('pagination', pagination);
+  useEffect(() => {
+    const search = `${columnFilters.find((filter) => filter.id === 'title')?.value}`;
+    getData({ search: search }).then((data) => {
+      setData(data);
+    });
+  }, [columnFilters]);
+
   return (
     <Table
       columns={columns}
@@ -106,6 +125,8 @@ export const TableStory = () => {
       pagination={pagination}
       setPagination={setPagination}
       rowCount={data?.count}
+      columnFilters={columnFilters}
+      setColumnFilters={setColumnFilters}
     />
   );
 };
