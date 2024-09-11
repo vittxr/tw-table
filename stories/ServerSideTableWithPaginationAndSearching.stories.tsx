@@ -60,7 +60,7 @@ const columns: ColumnDef<Book>[] = [
   {
     header: 'Subjects',
     accessorKey: 'subjects',
-    cell: ({ row }) => row.original.subjects.join(', '), // Display array of subjects
+    cell: ({ row }) => row.original.subjects.join(', '),
     enableSorting: false,
     enableColumnFilter: false,
   },
@@ -68,7 +68,7 @@ const columns: ColumnDef<Book>[] = [
     header: 'Authors',
     accessorKey: 'authors',
     cell: ({ row }) =>
-      row.original.authors.map((author) => author.name).join(', '), // Display array of author names
+      row.original.authors.map((author) => author.name).join(', '),
     enableSorting: false,
   },
   {
