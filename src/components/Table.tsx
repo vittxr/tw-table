@@ -41,10 +41,10 @@ export const Table = <TData extends object>({
   columnFilters,
   setColumnFilters,
 }: TableProps<TData>) => {
+  // states prefixed with undescore are used for client-side features.
   const [_columnFilters, _setColumnFilters] =
     React.useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  // local pagination, used if `serverSide` is set to false.
   const [_pagination, _setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
