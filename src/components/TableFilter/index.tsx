@@ -1,6 +1,6 @@
 import React from 'react';
 import { Column } from '@tanstack/react-table';
-import Input from '../../components/Input';
+import Input from '../inputs/Input';
 
 // Define an extended type for ColumnMeta that includes filterVariant
 interface ExtendedColumnMeta {
@@ -30,7 +30,7 @@ export default function TableFilter<TData>({
     <Input
       className="border-none animate-scale-x"
       onChange={(e) => {
-        column.setFilterValue(e.target.value) 
+        column.setFilterValue(e.target.value);
       }}
       placeholder={`${column.columnDef.header}...`}
       type="text"
