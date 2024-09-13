@@ -13,21 +13,21 @@ type User = {
 const data = [
   {
     name: 'John',
-    age: 25,
+    age: 15,
     email: 'john@example.com',
-    phone: '1234567890',
+    phone: '123',
   },
   {
     name: 'Luke',
-    age: 25,
+    age: 12,
     email: 'luke@example.com',
-    phone: '1234567890',
+    phone: '456',
   },
   {
     name: 'Vitor',
-    age: 25,
+    age: 20,
     email: 'vitor@example.com',
-    phone: '1234567890',
+    phone: '66',
   },
 ];
 

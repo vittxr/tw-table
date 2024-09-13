@@ -17,7 +17,7 @@ import TableHead from './TableHead';
 import Pagination from './Pagination';
 import { MOBILE_TABLE_HEAD_CLASSNAMES } from './tw_classnames';
 import { ResponsivenessType } from './types';
-import TableFilterMobile from './TableFilterMobile';
+import TableToolbarMobile from './TableToolbarMobile';
 
 export interface TableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
@@ -75,7 +75,7 @@ export const Table = <TData extends object>({
     <div className="flex flex-col flex-end">
       <div className="overflow-x-auto">
         <div className="shadow overflow-x-auto border-b border-gray-200 sm:rounded-lg">
-          <TableFilterMobile table={table} />
+          <TableToolbarMobile table={table} />
 
           <table className="min-w-full divide-y divide-gray-200 relative">
             <thead

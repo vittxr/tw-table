@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { InputHTMLAttributes, useEffect, useState } from 'react';
 import Select from '../Select';
 
-interface Props {
+interface Props
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   id: string;
   label: string;
   options: { value: string; label: string }[];
   placeholder?: string;
+  onChange: (selectedId: string, inputValue: string) => void;
 }
 
 export default function InputWithSelect({
@@ -13,22 +15,48 @@ export default function InputWithSelect({
   label,
   options,
   placeholder,
+  onChange,
+  ...rest
 }: Props) {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [inputValue, setInputValue] = useState<string>('');
+
+  useEffect(() => {
+    if (!selectedId) return;
+    onChange(selectedId, inputValue);
+  }, [inputValue, setSelectedId]);
+
+  useEffect(() => {
+    setSelectedId(options[0].value);
+  }, [options]);
+
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">
         {label}
       </label>
-      <div className="mt-1 relative rounded-md shadow-sm flex flex-row space-x-2">
-        <Select id={id} options={options} />
+      <div className="mt-1 relative rounded-md shadow-sm grid grid-cols-12 gap-2">
+        <div className="col-span-4">
+          <Select
+            id={id}
+            options={options}
+            onChange={(e) => {
+              setSelectedId(e.target.value);
+            }}
+          />
+        </div>
 
-        <input
-          type="text"
-          name={id}
-          id={id}
-          className="focus:ring-sky-500 focus:border-sky-500 block w-full px-2 py-2 sm:text-sm border border-gray-300 rounded-md outline-none"
-          placeholder={placeholder}
-        />
+        <div className="col-span-8">
+          <input
+            type="text"
+            name={id}
+            id={id}
+            className="focus:ring-sky-500 focus:border-sky-500 block w-full px-2 py-2 sm:text-sm border border-gray-300 rounded-md outline-none"
+            placeholder={placeholder}
+            onChange={(e) => setInputValue(e.target.value)}
+            {...rest}
+          />
+        </div>
       </div>
     </div>
   );
