@@ -38,7 +38,7 @@ export interface TableProps<TData> {
 export const Table = <TData extends object>({
   columns,
   data,
-  responsivenessType = 'card',
+  responsivenessType = 'scroll',
   serverSide = false,
   pagination,
   setPagination,
