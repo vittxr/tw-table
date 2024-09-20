@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, flexRender } from '@tanstack/react-table';
-import { ResponsivenessType, Selection } from '../../components/types';
+import { ResponsivenessType } from '../../components/types';
 import clsx from 'clsx';
 import {
   MOBILE_TABLE_DESCRIPTION_CLASSNAMES,
@@ -9,20 +9,18 @@ import {
 
 type Props<TData> = {
   row: Row<TData>;
-  selection?: Selection;
   responsivenessType?: ResponsivenessType;
 };
 
 const TableRow = <TData extends object>({
   row,
-  selection,
   responsivenessType,
 }: Props<TData>) => {
   return (
     <tr
       className={clsx(
         'border-gray-200',
-        selection && row.getIsSelected() && 'bg-sky-100',
+        row.getCanSelect() && row.getIsSelected() && 'bg-sky-100',
         responsivenessType && MOBILE_TABLE_ROW_CLASSNAMES[responsivenessType],
       )}
     >
@@ -36,12 +34,12 @@ const TableRow = <TData extends object>({
               MOBILE_TABLE_DESCRIPTION_CLASSNAMES[responsivenessType],
           )}
         >
-          {idx === 0 && selection && (
+          {idx === 0 && row.getCanSelect() && (
             <input
               type="checkbox"
               className="mr-2"
               checked={row.getIsSelected()}
-              disabled={!row.getCanSelect()}
+              // disabled={!row.getCanSelect()}
               onChange={row.getToggleSelectedHandler()}
             />
           )}

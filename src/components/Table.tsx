@@ -11,6 +11,7 @@ import {
   SortingState,
   PaginationState,
   OnChangeFn,
+  RowSelectionState,
 } from '@tanstack/react-table';
 import TableRow from './TableRow';
 import TableHead from './TableHead';
@@ -29,6 +30,9 @@ export interface TableProps<TData> {
   rowCount?: number;
   columnFilters?: ColumnFiltersState;
   setColumnFilters?: OnChangeFn<ColumnFiltersState>;
+  rowSelection?: RowSelectionState;
+  setRowSelection?: OnChangeFn<RowSelectionState>;
+  enableMultiRowSelection?: boolean;
 }
 
 export const Table = <TData extends object>({
@@ -41,6 +45,9 @@ export const Table = <TData extends object>({
   rowCount = 0,
   columnFilters,
   setColumnFilters,
+  rowSelection,
+  setRowSelection,
+  enableMultiRowSelection,
 }: TableProps<TData>) => {
   // states prefixed with undescore are used for client-side features.
   const [_columnFilters, _setColumnFilters] =
@@ -61,14 +68,18 @@ export const Table = <TData extends object>({
     getPaginationRowModel: !serverSide ? getPaginationRowModel() : undefined,
     onSortingChange: setSorting,
     onPaginationChange: !serverSide ? _setPagination : setPagination,
+    onRowSelectionChange: setRowSelection,
     state: {
-      sorting,
+      sorting: sorting,
       pagination: !serverSide ? _pagination : pagination,
       columnFilters: !serverSide ? _columnFilters : columnFilters,
+      rowSelection: rowSelection,
     },
     rowCount: !serverSide ? undefined : rowCount,
     enableSortingRemoval: false,
     manualPagination: serverSide,
+    enableRowSelection: rowSelection ? true : false,
+    enableMultiRowSelection: enableMultiRowSelection,
   });
 
   return (
