@@ -11,9 +11,10 @@ type Props<TData> = {
   responsivenessType?: ResponsivenessType;
 };
 
+
 const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
   const [targetSearchCol, setTargetSearchCol] = useState<string | null>(null);
-
+  
   return (
     <>
       <tr
@@ -56,11 +57,15 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
                         className="p-2 rounded-full shadow-md hover:bg-gray-100"
                         onClick={() => header.column.toggleSorting()}
                       >
-                        {header.column.getIsSorted() === 'desc' ? (
-                          <Icon name="chevron-down" className="h-3 w-3" />
-                        ) : (
-                          <Icon name="chevron-up" className="h-3 w-3" />
-                        )}
+                        {
+                          header.column.getIsSorted() === false ? (
+                            <Icon name='dash' className="h-3 w-3" />
+                          ) : header.column.getIsSorted() === 'desc' ? (
+                            <Icon name='chevron-down' className="h-3 w-3" />
+                          ) : (
+                            <Icon name='chevron-up' className="h-3 w-3" />
+                          )
+                        }
                       </button>
                     </div>
                   )}

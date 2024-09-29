@@ -12,7 +12,7 @@ type Props<TData> = {
  *
  * @param props - The component props.
  * @returns The rendered mobile table filter.
- */
+*/
 const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
   const headerGroups = table
     .getHeaderGroups()
@@ -69,6 +69,7 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
                   id: sort.id ? sort.id : sortableColumns[0].id,
                   desc: e.target.value === 'desc',
                 }));
+                console.log('new sorting', newSorting);
                 return newSorting;
               });
             }}
