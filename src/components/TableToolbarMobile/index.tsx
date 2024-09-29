@@ -54,6 +54,7 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
             id="sort_direction"
             label="Sort Dir"
             options={[
+
               {
                 value: 'asc',
                 label: 'Asc',
@@ -80,10 +81,10 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
           <Select
             id="sort"
             label="Sort by"
-            options={sortableColumns.map((header) => ({
+            options={[{value: "None", label: "None"}, ...sortableColumns.map((header) => ({
               value: header.id as string,
               label: header.column.columnDef.header as string,
-            }))}
+            }))]}
             onChange={(e) => {
               table.setSorting((updater) => {
                 return [
