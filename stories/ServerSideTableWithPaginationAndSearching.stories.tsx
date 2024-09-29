@@ -45,7 +45,6 @@ async function getData({
     page: page.toString(),
     search: search,
   });
-  console.log(searchParams.toString());
   const response = await fetch(API_ENDPOINT + searchParams);
   const data = await response.json();
   return data;

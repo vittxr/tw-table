@@ -33,6 +33,8 @@ export interface TableProps<TData> {
   rowSelection?: RowSelectionState;
   setRowSelection?: OnChangeFn<RowSelectionState>;
   enableMultiRowSelection?: boolean;
+  sorting?: SortingState;
+  setSorting?: OnChangeFn<SortingState>;
 }
 
 export const Table = <TData extends object>({
@@ -48,11 +50,13 @@ export const Table = <TData extends object>({
   rowSelection,
   setRowSelection,
   enableMultiRowSelection,
+  sorting,
+  setSorting,
 }: TableProps<TData>) => {
   // states prefixed with undescore are used for client-side features.
   const [_columnFilters, _setColumnFilters] =
     React.useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [_sorting, _setSorting] = React.useState<SortingState>([]);
   const [_pagination, _setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -61,18 +65,18 @@ export const Table = <TData extends object>({
     columns,
     data,
     filterFns: {}, // devs can pass advanced filter functions here
-    onColumnFiltersChange: !serverSide ? _setColumnFilters : setColumnFilters,
+    onColumnFiltersChange: !serverSide ? _setColumnFilters : (setColumnFilters || _setColumnFilters),
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: !serverSide ? getFilteredRowModel() : undefined,
-    getSortedRowModel: getSortedRowModel(),
+    getSortedRowModel: !serverSide ? getSortedRowModel() : undefined,
     getPaginationRowModel: !serverSide ? getPaginationRowModel() : undefined,
-    onSortingChange: setSorting,
-    onPaginationChange: !serverSide ? _setPagination : setPagination,
+    onSortingChange: !serverSide ? _setSorting : (setSorting || _setSorting),
+    onPaginationChange: !serverSide ? _setPagination : (setPagination || _setPagination),
     onRowSelectionChange: setRowSelection,
     state: {
-      sorting: sorting,
-      pagination: !serverSide ? _pagination : pagination,
-      columnFilters: !serverSide ? _columnFilters : columnFilters,
+      sorting: !serverSide ? _sorting : (sorting || _sorting),
+      pagination: !serverSide ? _pagination : (pagination || _pagination),
+      columnFilters: !serverSide ? _columnFilters : (columnFilters || _columnFilters),
       rowSelection: rowSelection,
     },
     rowCount: !serverSide ? undefined : rowCount,

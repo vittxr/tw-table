@@ -20,6 +20,7 @@ export default function InputWithSelect({
 }: Props) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState<string>('');
+  const isOptionsEmpty = options.length === 0
 
   useEffect(() => {
     if (!selectedId) return;
@@ -27,8 +28,13 @@ export default function InputWithSelect({
   }, [inputValue, setSelectedId]);
 
   useEffect(() => {
+    if(isOptionsEmpty) return;
     setSelectedId(options[0].value);
   }, [options]);
+
+  if (isOptionsEmpty) {
+    return 
+  }
 
   return (
     <div>
