@@ -1,10 +1,13 @@
 import React from 'react'
 import { SharedProps } from './types'
+import { useLabels } from '../../../providers/LabelsProvider'
 
 const PageSizeControls = ({table}: SharedProps) => {
+  const { texts } = useLabels();
+
   return (
     <div className="space-x-2">
-        <span>Show</span>
+        <span>{texts.pagination!.show}</span>
         <select
             value={table.getState().pagination.pageSize}
             onChange={e => {
