@@ -5,10 +5,9 @@ import { useLabels } from '../../../providers/LabelsProvider'
 const Info = ({table}: SharedProps) => {
   const { texts } = useLabels();
  
-  console.log('texts: ', texts)
   return (
     <div className="flex justify-between">
-        <div className="text-sm text-gray-600">
+        <div className="text-sm">
             {texts.pagination!.showing} {table.getRowModel().rows.length.toLocaleString()}{" "}
             {texts.pagination!.of}{' '}
             {table.getRowCount().toLocaleString()} {texts.pagination!.rows}

@@ -28,7 +28,6 @@ export default function TableFilter<TData>({
     </select>
   ) : (
     <Input
-      className="border-none animate-scale-x"
       onChange={(e) => {
         column.setFilterValue(e.target.value);
       }}

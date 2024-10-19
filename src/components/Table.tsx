@@ -66,7 +66,6 @@ export const Table = <TData extends object>({
     pageIndex: 0,
     pageSize: 10,
   });
-  // const _texts = { ...uiTexts, ...texts };
   const _texts = deepMerge(uiTexts, texts)
   const table = useReactTable({
     columns,
@@ -93,17 +92,16 @@ export const Table = <TData extends object>({
     enableMultiRowSelection: enableMultiRowSelection,
   }); 
 
-  console.log("texts: ", _texts)
   return (
     <LabelsProvider
       texts={_texts}
     >
-      <div className="flex flex-col flex-end">
+      <div className="flex flex-col flex-end bg-white dark:bg-gray-900 text-black dark:text-gray-300">
         <div className="overflow-x-auto">
-          <div className="shadow overflow-x-auto border-b border-gray-200 sm:rounded-lg">
+          <div className="shadow overflow-x-auto sm:rounded-lg">
             <TableToolbarMobile table={table} />
 
-            <table className="min-w-full divide-y divide-gray-200 relative">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 relative">
               <thead
                 className={clsx(
                   'bg-gray-50 border',

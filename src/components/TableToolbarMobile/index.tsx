@@ -39,6 +39,8 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
             label: header.column.columnDef.header as string,
           }))}
           onChange={(selectedId: string, inputValue: string) => {
+            console.log(selectedId, inputValue);
+            console.log('searchableColumns', searchableColumns);
             const header = searchableColumns.find(
               (header) => header.id === selectedId,
             );
@@ -71,7 +73,6 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
                   id: sort.id ? sort.id : sortableColumns[0].id,
                   desc: e.target.value === 'desc',
                 }));
-                console.log('new sorting', newSorting);
                 return newSorting;
               });
             }}

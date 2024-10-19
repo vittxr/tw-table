@@ -32,7 +32,7 @@ const Icon = (props: IconProps) => {
     'chevron-up': <ChevronUpIcon {...svgProps} />,
     'chevron-down': <ChevronDownIcon {...svgProps} />,
     'magnifying-glass': <MagnifyingGlassIcon {...svgProps} />,
-    'dash':  <Dash {...svgProps} />,
+    'dash': <Dash {...svgProps} />,
   };
 
   return icons[name];
