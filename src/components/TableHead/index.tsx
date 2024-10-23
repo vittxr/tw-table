@@ -11,9 +11,10 @@ type Props<TData> = {
   responsivenessType?: ResponsivenessType;
 };
 
+
 const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
   const [targetSearchCol, setTargetSearchCol] = useState<string | null>(null);
-
+  
   return (
     <>
       <tr
@@ -23,7 +24,7 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
         {headerGroup.headers.map((header) => (
           <th
             key={header.id}
-            className="px-3.5 py-2 text-left min-w-48 max-w-48 h-14"
+            className="px-3.5 py-2 text-left min-w-48 max-w-48 h-14 dark:bg-gray-800 dark:text-gray-300"
             onBlur={() => {
               if (header.column.getFilterValue()) return;
               setTargetSearchCol(null);
@@ -40,7 +41,7 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
                 <div className="flex space-x-2">
                   {header.column.getCanFilter() && (
                     <button
-                      className="p-2 rounded-full shadow-md hover:bg-gray-100"
+                      className="p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-900"
                       onClick={() =>
                         header.column.getCanFilter() &&
                         setTargetSearchCol(header.id)
@@ -53,14 +54,18 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
                   {header.column.getCanSort() && (
                     <div className="flex flex-col">
                       <button
-                        className="p-2 rounded-full shadow-md hover:bg-gray-100"
+                        className="p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-900"
                         onClick={() => header.column.toggleSorting()}
                       >
-                        {header.column.getIsSorted() === 'desc' ? (
-                          <Icon name="chevron-down" className="h-3 w-3" />
-                        ) : (
-                          <Icon name="chevron-up" className="h-3 w-3" />
-                        )}
+                        {
+                          header.column.getIsSorted() === false ? (
+                            <Icon name='dash' className="h-3 w-3" />
+                          ) : header.column.getIsSorted() === 'desc' ? (
+                            <Icon name='chevron-down' className="h-3 w-3" />
+                          ) : (
+                            <Icon name='chevron-up' className="h-3 w-3" />
+                          )
+                        }
                       </button>
                     </div>
                   )}

@@ -19,6 +19,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
       isLoading = false,
       onKeyDown,
       autoFocus = false,
+      ...rest
     },
     refProp,
   ) => {
@@ -51,7 +52,6 @@ const Input = forwardRef<HTMLInputElement, Props>(
           autoComplete={id}
           value={inputValue}
           required={required}
-          className='block w-full px-3 py-2 placeholder-gray-400 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm'
           onChange={(e) => {
             setInputValue(e.target.value);
             onChange && onChange(e);
@@ -61,6 +61,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
           }}
           ref={ref}
           autoFocus={autoFocus}
+          {...rest}
+          className='bg-gray-200 dark:bg-gray-700 block w-full px-3 py-2 placeholder-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm'
         />
     );
   },

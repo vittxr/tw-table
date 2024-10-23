@@ -2,6 +2,7 @@ import React from 'react';
 import InputWithSelect from '../inputs/InputWithSelect';
 import { SortingState, Table } from '@tanstack/react-table';
 import Select from '../inputs/Select';
+import { useLabels } from '../../providers/LabelsProvider';
 
 type Props<TData> = {
   table: Table<TData>;
@@ -12,8 +13,9 @@ type Props<TData> = {
  *
  * @param props - The component props.
  * @returns The rendered mobile table filter.
- */
+*/
 const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
+  const { texts } = useLabels();
   const headerGroups = table
     .getHeaderGroups()
     .map((headerGroup) => headerGroup);
@@ -30,13 +32,15 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
       <div className="w-full">
         <InputWithSelect
           id={'search'}
-          label={'Search'}
-          placeholder="Search..."
+          label={texts.search!.label as string}
+          placeholder={texts.search!.placeholder}
           options={searchableColumns.map((header) => ({
             value: header.id as string,
             label: header.column.columnDef.header as string,
           }))}
           onChange={(selectedId: string, inputValue: string) => {
+            console.log(selectedId, inputValue);
+            console.log('searchableColumns', searchableColumns);
             const header = searchableColumns.find(
               (header) => header.id === selectedId,
             );
@@ -52,15 +56,15 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
         <div className="col-span-4">
           <Select
             id="sort_direction"
-            label="Sort Dir"
+            label={texts.sort!.dir as string}
             options={[
               {
                 value: 'asc',
-                label: 'Asc',
+                label: texts.sort!.asc as string,
               },
               {
                 value: 'desc',
-                label: 'Desc',
+                label: texts.sort!.desc as string,
               },
             ]}
             onChange={(e) => {
@@ -78,11 +82,11 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
         <div className="col-span-8">
           <Select
             id="sort"
-            label="Sort by"
-            options={sortableColumns.map((header) => ({
+            label={texts.sort!.by as string}
+            options={[{value: "None", label: "None"}, ...sortableColumns.map((header) => ({
               value: header.id as string,
               label: header.column.columnDef.header as string,
-            }))}
+            }))]}
             onChange={(e) => {
               table.setSorting((updater) => {
                 return [

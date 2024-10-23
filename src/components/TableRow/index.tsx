@@ -19,8 +19,8 @@ const TableRow = <TData extends object>({
   return (
     <tr
       className={clsx(
-        'border-gray-200',
-        row.getCanSelect() && row.getIsSelected() && 'bg-sky-100',
+        'border-gray-200 dark:border-gray-600',
+        row.getCanSelect() && row.getIsSelected() && 'bg-gray-100 dark:bg-gray-600',
         responsivenessType && MOBILE_TABLE_ROW_CLASSNAMES[responsivenessType],
       )}
     >
@@ -29,7 +29,7 @@ const TableRow = <TData extends object>({
           key={cell.id}
           data-label={cell.column.columnDef.header}
           className={clsx(
-            'px-3.5 py-2 min-w-48 text-wrap',
+            'px-3.5 py-2 min-w-48 text-wrap border-gray-300 dark:border-gray-600',
             responsivenessType &&
               MOBILE_TABLE_DESCRIPTION_CLASSNAMES[responsivenessType],
           )}

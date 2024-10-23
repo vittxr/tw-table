@@ -17,18 +17,17 @@ export default function TableFilter<TData>({
 
   return filterVariant === 'range' ? (
     <div>
-      <p>not implemented lol</p>
+      <p>not implemented</p>
     </div>
   ) : filterVariant === 'select' ? (
     <select
       onChange={(e) => column.setFilterValue(e.target.value)}
       value={columnFilterValue?.toString()}
     >
-      <option value="">not implemented lol</option>
+      <option value="">not implemented</option>
     </select>
   ) : (
     <Input
-      className="border-none animate-scale-x"
       onChange={(e) => {
         column.setFilterValue(e.target.value);
       }}
