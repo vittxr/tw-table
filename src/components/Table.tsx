@@ -22,6 +22,7 @@ import TableToolbarMobile from './TableToolbarMobile';
 import { UITexts, uiTexts } from '../constants/texts';
 import LabelsProvider from '../providers/LabelsProvider';
 import { deepMerge } from '../utils/functions/deepMerge';
+import TableRowSkeleton from './TableRowSkeleton';
 
 export interface TableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
@@ -39,6 +40,7 @@ export interface TableProps<TData> {
   sorting?: SortingState;
   setSorting?: OnChangeFn<SortingState>;
   texts?: UITexts;  
+  isLoading?: boolean;
 }
 
 export const Table = <TData extends object>({
@@ -56,7 +58,8 @@ export const Table = <TData extends object>({
   enableMultiRowSelection,
   sorting,
   setSorting,
-  texts = uiTexts
+  texts = uiTexts,
+  isLoading = false,
 }: TableProps<TData>) => {
   // states prefixed with undescore are used for client-side features.
   const [_columnFilters, _setColumnFilters] =
@@ -119,20 +122,28 @@ export const Table = <TData extends object>({
               </thead>
 
               <tbody>
-                {table.getRowModel().rows.length ? (
-                  table
-                    .getRowModel()
-                    .rows.map((row) => (
-                      <TableRow
-                        key={row.id}
-                        row={row}
-                        responsivenessType={responsivenessType}
-                      />
-                    ))
-                ) : (
+                {isLoading ? (
+                  <>
+                    {
+                      Array.from(Array(pagination?.pageSize || _pagination.pageSize).keys().map((_, idx) => (
+                        <TableRowSkeleton colsLength={columns.length} key={idx} />
+                      )))
+                    }
+                  </>
+                ) : table.getRowModel().rows.length === 0 ? (
                   <tr className="text-center h-32">
                     <td colSpan={12}>{_texts.empty}</td>
                   </tr>
+                ) : (
+                  table
+                  .getRowModel()
+                  .rows.map((row) => (
+                    <TableRow
+                      key={row.id}
+                      row={row}
+                      responsivenessType={responsivenessType}
+                    />
+                  ))
                 )}
               </tbody>
             </table>
