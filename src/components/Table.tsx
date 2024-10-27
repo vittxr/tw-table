@@ -136,14 +136,14 @@ export const Table = <TData extends object>({
                   </tr>
                 ) : (
                   table
-                  .getRowModel()
-                  .rows.map((row) => (
-                    <TableRow
-                      key={row.id}
-                      row={row}
-                      responsivenessType={responsivenessType}
-                    />
-                  ))
+                    .getRowModel()
+                    .rows.map((row) => (
+                      <TableRow
+                        key={row.id}
+                        row={row}
+                        responsivenessType={responsivenessType}
+                      />
+                    ))
                 )}
               </tbody>
             </table>
