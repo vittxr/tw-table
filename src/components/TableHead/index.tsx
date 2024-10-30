@@ -9,19 +9,25 @@ import { ResponsivenessType } from '../types';
 type Props<TData> = {
   headerGroup: HeaderGroup<TData>;
   responsivenessType?: ResponsivenessType;
+  enableMultiRowSelection?: boolean;
+  isAllRowsSelected?: boolean;
+  toggleAllRowsSelectedHandler?: (event: unknown) => void;
 };
 
-
-const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
+const TableHead = <TData extends object>({
+  headerGroup,
+  enableMultiRowSelection,
+  isAllRowsSelected,
+  toggleAllRowsSelectedHandler,
+}: Props<TData>) => {
   const [targetSearchCol, setTargetSearchCol] = useState<string | null>(null);
-  
   return (
     <>
       <tr
         key={headerGroup.id}
         className={clsx('w-full', MOBILE_TABLE_ROW_CLASSNAMES)}
       >
-        {headerGroup.headers.map((header) => (
+        {headerGroup.headers.map((header, idx) => (
           <th
             key={header.id}
             className="px-3.5 py-2 text-left min-w-48 max-w-48 h-14 dark:bg-gray-800 dark:text-gray-300"
@@ -33,6 +39,17 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
           >
             {targetSearchCol !== header.id && (
               <div className="flex justify-between items-center">
+                {idx === 0 && enableMultiRowSelection && (
+                  <div className="flex items-center mr-2">
+                    <input
+                      type="checkbox"
+                      className="mr-2"
+                      checked={isAllRowsSelected}
+                      onChange={toggleAllRowsSelectedHandler}
+                    />
+                  </div>
+                )}
+
                 {flexRender(
                   header.column.columnDef.header,
                   header.getContext(),
@@ -57,15 +74,13 @@ const TableHead = <TData extends object>({ headerGroup }: Props<TData>) => {
                         className="p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-900"
                         onClick={() => header.column.toggleSorting()}
                       >
-                        {
-                          header.column.getIsSorted() === false ? (
-                            <Icon name='dash' className="h-3 w-3" />
-                          ) : header.column.getIsSorted() === 'desc' ? (
-                            <Icon name='chevron-down' className="h-3 w-3" />
-                          ) : (
-                            <Icon name='chevron-up' className="h-3 w-3" />
-                          )
-                        }
+                        {header.column.getIsSorted() === false ? (
+                          <Icon name="dash" className="h-3 w-3" />
+                        ) : header.column.getIsSorted() === 'desc' ? (
+                          <Icon name="chevron-down" className="h-3 w-3" />
+                        ) : (
+                          <Icon name="chevron-up" className="h-3 w-3" />
+                        )}
                       </button>
                     </div>
                   )}

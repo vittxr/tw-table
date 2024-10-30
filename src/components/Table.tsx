@@ -39,7 +39,7 @@ export interface TableProps<TData> {
   enableMultiRowSelection?: boolean;
   sorting?: SortingState;
   setSorting?: OnChangeFn<SortingState>;
-  texts?: UITexts;  
+  texts?: UITexts;
   isLoading?: boolean;
 }
 
@@ -69,23 +69,29 @@ export const Table = <TData extends object>({
     pageIndex: 0,
     pageSize: 10,
   });
-  const _texts = deepMerge(uiTexts, texts)
+  const _texts = deepMerge(uiTexts, texts);
   const table = useReactTable({
     columns,
     data,
     filterFns: {}, // devs can pass advanced filter functions here
-    onColumnFiltersChange: !serverSide ? _setColumnFilters : (setColumnFilters || _setColumnFilters),
+    onColumnFiltersChange: !serverSide
+      ? _setColumnFilters
+      : setColumnFilters || _setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: !serverSide ? getFilteredRowModel() : undefined,
     getSortedRowModel: !serverSide ? getSortedRowModel() : undefined,
     getPaginationRowModel: !serverSide ? getPaginationRowModel() : undefined,
-    onSortingChange: !serverSide ? _setSorting : (setSorting || _setSorting),
-    onPaginationChange: !serverSide ? _setPagination : (setPagination || _setPagination),
+    onSortingChange: !serverSide ? _setSorting : setSorting || _setSorting,
+    onPaginationChange: !serverSide
+      ? _setPagination
+      : setPagination || _setPagination,
     onRowSelectionChange: setRowSelection,
     state: {
-      sorting: !serverSide ? _sorting : (sorting || _sorting),
-      pagination: !serverSide ? _pagination : (pagination || _pagination),
-      columnFilters: !serverSide ? _columnFilters : (columnFilters || _columnFilters),
+      sorting: !serverSide ? _sorting : sorting || _sorting,
+      pagination: !serverSide ? _pagination : pagination || _pagination,
+      columnFilters: !serverSide
+        ? _columnFilters
+        : columnFilters || _columnFilters,
       rowSelection: rowSelection,
     },
     rowCount: !serverSide ? undefined : rowCount,
@@ -93,12 +99,10 @@ export const Table = <TData extends object>({
     manualPagination: serverSide,
     enableRowSelection: rowSelection ? true : false,
     enableMultiRowSelection: enableMultiRowSelection,
-  }); 
+  });
 
   return (
-    <LabelsProvider
-      texts={_texts}
-    >
+    <LabelsProvider texts={_texts}>
       <div className="flex flex-col flex-end bg-white dark:bg-gray-900 text-black dark:text-gray-300">
         <div className="overflow-x-auto">
           <div className="shadow overflow-x-auto sm:rounded-lg">
@@ -117,6 +121,9 @@ export const Table = <TData extends object>({
                     key={headerGroup.id}
                     headerGroup={headerGroup}
                     responsivenessType={responsivenessType}
+                    enableMultiRowSelection={enableMultiRowSelection}
+                    isAllRowsSelected={table.getIsAllRowsSelected()}
+                    toggleAllRowsSelectedHandler={table.getToggleAllRowsSelectedHandler()}
                   />
                 ))}
               </thead>
@@ -124,11 +131,16 @@ export const Table = <TData extends object>({
               <tbody>
                 {isLoading ? (
                   <>
-                    {
-                      Array.from(Array(pagination?.pageSize || _pagination.pageSize).keys().map((_, idx) => (
-                        <TableRowSkeleton colsLength={columns.length} key={idx} />
-                      )))
-                    }
+                    {Array.from(
+                      Array(pagination?.pageSize || _pagination.pageSize)
+                        .keys()
+                        .map((_, idx) => (
+                          <TableRowSkeleton
+                            colsLength={columns.length}
+                            key={idx}
+                          />
+                        )),
+                    )}
                   </>
                 ) : table.getRowModel().rows.length === 0 ? (
                   <tr className="text-center h-32">

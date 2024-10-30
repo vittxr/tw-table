@@ -101,7 +101,7 @@ export const TableStory = () => {
         data={users}
         rowSelection={rowSelection}
         setRowSelection={setRowSelection}
-        enableMultiRowSelection={false} // default is true.
+        enableMultiRowSelection={true} // default is true.
       />
     </div>
   );
