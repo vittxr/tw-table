@@ -1,11 +1,11 @@
-import { TwTable } from '@tanstack/react-table';
+import { Table } from '@tanstack/react-table';
 import React from 'react';
 import PageControls from './fragments/PageControls';
 import PageSizeControls from './fragments/PageSizeControls';
 import Info from './fragments/Info';
 
 type Props = {
-  table: TwTable<any>;
+  table: Table<any>;
 };
 
 const Pagination = ({ table }: Props) => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import InputWithSelect from '../inputs/InputWithSelect';
-import { SortingState, TwTable } from '@tanstack/react-table';
+import { SortingState, Table } from '@tanstack/react-table';
 import Select from '../inputs/Select';
 import { useLabels } from '../../providers/LabelsProvider';
 
 type Props<TData> = {
-  table: TwTable<TData>;
+  table: Table<TData>;
 };
 
 /**

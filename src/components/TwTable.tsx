@@ -136,15 +136,12 @@ export const TwTable = <TData extends object>({
                 {isLoading ? (
                   <>
                     {Array.from(
-                      Array(pagination?.pageSize || _pagination.pageSize)
-                        .keys()
-                        .map((_, idx) => (
-                          <TableRowSkeleton
-                            colsLength={columns.length}
-                            key={idx}
-                          />
-                        )),
-                    )}
+                      Array(
+                        pagination?.pageSize || _pagination.pageSize,
+                      ).keys(),
+                    ).map((_, idx) => (
+                      <TableRowSkeleton colsLength={columns.length} key={idx} />
+                    ))}
                   </>
                 ) : table.getRowModel().rows.length === 0 ? (
                   <tr className="text-center h-32">
