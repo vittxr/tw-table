@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Table, TableProps } from '../src';
+import { TwTable, TwTableProps } from '../src';
 import { ColumnDef } from '@tanstack/react-table';
 import { users } from './mocks/users';
 
@@ -66,7 +66,7 @@ const columns: ColumnDef<User>[] = [
 
 export default {
   title: 'Components/ClientSideScrollableTable',
-  component: Table,
+  component: TwTable,
   argTypes: {
     columns: {
       control: {
@@ -81,7 +81,7 @@ export default {
   },
 } as Meta;
 
-export const TableStory = (args: TableProps<User>) => <Table {...args} />;
+export const TableStory = (args: TwTableProps<User>) => <TwTable {...args} />;
 
 TableStory.args = {
   columns,

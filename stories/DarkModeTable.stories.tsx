@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Meta } from '@storybook/react';
-import { Table } from '../src';
+import { TwTable } from '../src';
 import { ColumnDef } from '@tanstack/react-table';
 import { users } from './mocks/users';
 
@@ -66,7 +66,7 @@ const columns: ColumnDef<User>[] = [
 
 export default {
   title: 'Components/DarkModeTable',
-  component: Table,
+  component: TwTable,
   argTypes: {
     columns: {
       control: {
@@ -83,17 +83,19 @@ export default {
 
 export const TableStory = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>(
-    localStorage.theme === 'dark' ? 'dark' : (
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'
-    ),
+    localStorage.theme === 'dark'
+      ? 'dark'
+      : !('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light',
   );
-  
+
   useEffect(() => {
-    if(theme === 'dark') {
-        document.body.classList.add('dark');
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
     } else {
-        document.body.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
   }, [theme]);
 
@@ -104,10 +106,7 @@ export const TableStory = () => {
         <button onClick={() => setTheme('light')}>light</button>
         <button onClick={() => setTheme('dark')}>dark</button>
       </div>
-      <Table
-        columns={columns}
-        data={users}
-      />
+      <TwTable columns={columns} data={users} />
     </div>
   );
 };

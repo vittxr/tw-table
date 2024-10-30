@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Table } from '../src';
+import { TwTable } from '../src';
 import { ColumnDef } from '@tanstack/react-table';
 import { users } from './mocks/users';
 
@@ -66,7 +66,7 @@ const columns: ColumnDef<User>[] = [
 
 export default {
   title: 'Components/CustomLabelsTable',
-  component: Table,
+  component: TwTable,
   argTypes: {
     columns: {
       control: {
@@ -84,30 +84,30 @@ export default {
 export const TableStory = () => {
   return (
     <div className="relative min-h-screen">
-      <Table
+      <TwTable
         columns={columns}
         data={users}
-        texts={{ 
-            empty: "Vazio",
-            sort: {
-                by: "Ordenar por",
-                dir: "Ordem",
-                asc: "Crescente",
-                desc: "Decrescente",
-            },
-            search: {
-                label: "Buscar",
-                placeholder: "Buscar...",
-            },
-            pagination: {
-                previous: "Anterior",
-                next: "Próximo",
-                page: "Página",
-                of: "de",
-                show: "Mostrar",
-                showing: "Mostrando",
-                rows: "Registros",
-            }
+        texts={{
+          empty: 'Vazio',
+          sort: {
+            by: 'Ordenar por',
+            dir: 'Ordem',
+            asc: 'Crescente',
+            desc: 'Decrescente',
+          },
+          search: {
+            label: 'Buscar',
+            placeholder: 'Buscar...',
+          },
+          pagination: {
+            previous: 'Anterior',
+            next: 'Próximo',
+            page: 'Página',
+            of: 'de',
+            show: 'Mostrar',
+            showing: 'Mostrando',
+            rows: 'Registros',
+          },
         }}
       />
     </div>

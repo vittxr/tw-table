@@ -1,3 +1,3 @@
 export type SharedProps = {
-    table: Table<any>
-}
+  table: TwTable<any>;
+};

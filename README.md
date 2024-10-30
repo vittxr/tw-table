@@ -15,7 +15,7 @@
 To use the library, start by importing `tw-table`:
 
 ```js
-import { Table } from 'tw-table';
+import { TwTable } from 'tw-table';
 ```
 
 If you need type definitions from `react-table`, you can import them as follows:

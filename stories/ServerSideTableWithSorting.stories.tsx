@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Meta } from '@storybook/react';
-import { Table } from '../src';
+import { TwTable } from '../src';
 import {
   ColumnDef,
   PaginationState,
@@ -12,10 +12,10 @@ const API_ENDPOINT = 'https://api.jikan.moe/v4/anime';
 const PAGE_SIZE = 25;
 
 type Anime = {
-    title: string;
-    type: string;
-    source: string;
-    episodes: number;
+  title: string;
+  type: string;
+  source: string;
+  episodes: number;
 };
 
 async function getData({
@@ -28,7 +28,7 @@ async function getData({
     order_by: sorting.map((sort) => sort.id).join(','),
   });
   console.log(searchParams.toString());
-  const response = await fetch(API_ENDPOINT + "?" +searchParams);
+  const response = await fetch(API_ENDPOINT + '?' + searchParams);
   const data = await response.json();
   return data;
 }
@@ -62,7 +62,7 @@ const columns: ColumnDef<Anime>[] = [
 
 export default {
   title: 'Components/ServerSideTableWithSorting',
-  component: Table,
+  component: TwTable,
   argTypes: {
     columns: {
       control: {
@@ -79,11 +79,12 @@ export default {
 
 export const TableStory = () => {
   const [data, setData] = useState({ data: [] });
-  const [sorting, setSorting] = useState<SortingState>([{
-    id: 'title',
-    desc: true,
-  }]);
-
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: 'title',
+      desc: true,
+    },
+  ]);
 
   useEffect(() => {
     getData({ sorting }).then((data) => {
@@ -93,7 +94,7 @@ export const TableStory = () => {
 
   console.log('data', data);
   return (
-    <Table
+    <TwTable
       columns={columns}
       data={data?.data}
       serverSide={true}

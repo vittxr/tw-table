@@ -24,7 +24,7 @@ import LabelsProvider from '../providers/LabelsProvider';
 import { deepMerge } from '../utils/functions/deepMerge';
 import TableRowSkeleton from './TableRowSkeleton';
 
-export interface TableProps<TData> {
+export interface TwTableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
   responsivenessType?: ResponsivenessType; // I'll add more options in the future.
@@ -43,7 +43,7 @@ export interface TableProps<TData> {
   isLoading?: boolean;
 }
 
-export const Table = <TData extends object>({
+export const TwTable = <TData extends object>({
   columns,
   data,
   responsivenessType = 'card',
@@ -60,7 +60,7 @@ export const Table = <TData extends object>({
   setSorting,
   texts = uiTexts,
   isLoading = false,
-}: TableProps<TData>) => {
+}: TwTableProps<TData>) => {
   // states prefixed with undescore are used for client-side features.
   const [_columnFilters, _setColumnFilters] =
     React.useState<ColumnFiltersState>([]);

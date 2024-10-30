@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
-import { Table } from '../src';
+import { TwTable } from '../src';
 import { ColumnDef, RowSelectionState } from '@tanstack/react-table';
 import { users } from './mocks/users';
 
@@ -66,7 +66,7 @@ const columns: ColumnDef<User>[] = [
 
 export default {
   title: 'Components/RowSelectionTable',
-  component: Table,
+  component: TwTable,
   argTypes: {
     columns: {
       control: {
@@ -96,7 +96,7 @@ export const TableStory = () => {
           </button>
         </div>
       )}
-      <Table
+      <TwTable
         columns={columns}
         data={users}
         rowSelection={rowSelection}

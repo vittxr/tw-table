@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
-import { Table } from '../src';
+import { TwTable } from '../src';
 import { ColumnDef, RowSelectionState } from '@tanstack/react-table';
 import { users } from './mocks/users';
 
@@ -66,7 +66,7 @@ const columns: ColumnDef<User>[] = [
 
 export default {
   title: 'Components/LoadingTable',
-  component: Table,
+  component: TwTable,
   argTypes: {
     columns: {
       control: {
@@ -84,11 +84,7 @@ export default {
 export const TableStory = () => {
   return (
     <div className="relative min-h-screen">
-      <Table
-        columns={columns}
-        data={users}
-        isLoading={true}
-      />
+      <TwTable columns={columns} data={users} isLoading={true} />
     </div>
   );
 };

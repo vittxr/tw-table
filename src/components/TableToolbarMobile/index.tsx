@@ -1,11 +1,11 @@
 import React from 'react';
 import InputWithSelect from '../inputs/InputWithSelect';
-import { SortingState, Table } from '@tanstack/react-table';
+import { SortingState, TwTable } from '@tanstack/react-table';
 import Select from '../inputs/Select';
 import { useLabels } from '../../providers/LabelsProvider';
 
 type Props<TData> = {
-  table: Table<TData>;
+  table: TwTable<TData>;
 };
 
 /**
@@ -13,7 +13,7 @@ type Props<TData> = {
  *
  * @param props - The component props.
  * @returns The rendered mobile table filter.
-*/
+ */
 const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
   const { texts } = useLabels();
   const headerGroups = table
@@ -83,10 +83,13 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
           <Select
             id="sort"
             label={texts.sort!.by as string}
-            options={[{value: "None", label: "None"}, ...sortableColumns.map((header) => ({
-              value: header.id as string,
-              label: header.column.columnDef.header as string,
-            }))]}
+            options={[
+              { value: 'None', label: 'None' },
+              ...sortableColumns.map((header) => ({
+                value: header.id as string,
+                label: header.column.columnDef.header as string,
+              })),
+            ]}
             onChange={(e) => {
               table.setSorting((updater) => {
                 return [

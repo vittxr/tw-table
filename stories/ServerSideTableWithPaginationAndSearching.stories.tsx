@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Meta } from '@storybook/react';
-import { Table } from '../src';
+import { TwTable } from '../src';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -80,7 +80,7 @@ const columns: ColumnDef<Book>[] = [
 
 export default {
   title: 'Components/ServerSideTableWithPaginationAndSearching',
-  component: Table,
+  component: TwTable,
   argTypes: {
     columns: {
       control: {
@@ -117,7 +117,7 @@ export const TableStory = () => {
   }, [columnFilters]);
 
   return (
-    <Table
+    <TwTable
       columns={columns}
       data={data?.results}
       serverSide={true}

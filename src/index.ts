@@ -1,4 +1,2 @@
-import './index.css'
-// import { Table, TableProps } from './components/Table';
-
-export * from './components/Table';
+import './index.css';
+export * from './components/TwTable';
