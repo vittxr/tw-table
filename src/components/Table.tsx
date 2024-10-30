@@ -122,8 +122,12 @@ export const Table = <TData extends object>({
                     headerGroup={headerGroup}
                     responsivenessType={responsivenessType}
                     enableMultiRowSelection={enableMultiRowSelection}
-                    isAllRowsSelected={table.getIsAllRowsSelected()}
-                    toggleAllRowsSelectedHandler={table.getToggleAllRowsSelectedHandler()}
+                    isAllRowsSelected={
+                      rowSelection && table.getIsAllRowsSelected()
+                    }
+                    toggleAllRowsSelectedHandler={
+                      rowSelection && table.getToggleAllRowsSelectedHandler()
+                    }
                   />
                 ))}
               </thead>

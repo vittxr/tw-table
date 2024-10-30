@@ -9,8 +9,8 @@ import { ResponsivenessType } from '../types';
 type Props<TData> = {
   headerGroup: HeaderGroup<TData>;
   responsivenessType?: ResponsivenessType;
-  enableMultiRowSelection?: boolean;
-  isAllRowsSelected?: boolean;
+  enableMultiRowSelection?: boolean | null;
+  isAllRowsSelected?: boolean | null;
   toggleAllRowsSelectedHandler?: (event: unknown) => void;
 };
 
@@ -39,16 +39,18 @@ const TableHead = <TData extends object>({
           >
             {targetSearchCol !== header.id && (
               <div className="flex justify-between items-center">
-                {idx === 0 && enableMultiRowSelection && (
-                  <div className="flex items-center mr-2">
-                    <input
-                      type="checkbox"
-                      className="mr-2"
-                      checked={isAllRowsSelected}
-                      onChange={toggleAllRowsSelectedHandler}
-                    />
-                  </div>
-                )}
+                {idx === 0 &&
+                  enableMultiRowSelection &&
+                  toggleAllRowsSelectedHandler && (
+                    <div className="flex items-center mr-2">
+                      <input
+                        type="checkbox"
+                        className="mr-2"
+                        checked={isAllRowsSelected || false}
+                        onChange={toggleAllRowsSelectedHandler}
+                      />
+                    </div>
+                  )}
 
                 {flexRender(
                   header.column.columnDef.header,
