@@ -16,7 +16,10 @@ import {
 import TableRow from './TableRow';
 import TableHead from './TableHead';
 import Pagination from './Pagination';
-import { MOBILE_TABLE_HEAD_CLASSNAMES } from './tw_classnames';
+import {
+  RESPONSIVE_TABLE_HEAD_CLASSNAMES,
+  TABLE_HEAD_CLASSNAMES,
+} from './tw_classnames';
 import { ResponsivenessType } from './types';
 import TableToolbarMobile from './TableToolbarMobile';
 import { UITexts, uiTexts } from '../constants/texts';
@@ -121,9 +124,8 @@ export const TwTable = <TData extends object>({
                   'bg-gray-50 border',
                   responsivenessType &&
                     !viewType &&
-                    MOBILE_TABLE_HEAD_CLASSNAMES[responsivenessType],
-                  viewType &&
-                    MOBILE_TABLE_HEAD_CLASSNAMES[viewType].replace('sm:', ''),
+                    RESPONSIVE_TABLE_HEAD_CLASSNAMES[responsivenessType],
+                  viewType && TABLE_HEAD_CLASSNAMES[viewType],
                 )}
               >
                 {table.getHeaderGroups().map((headerGroup) => (

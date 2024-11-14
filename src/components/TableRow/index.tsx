@@ -3,8 +3,10 @@ import { Row, flexRender } from '@tanstack/react-table';
 import { ResponsivenessType } from '../../components/types';
 import clsx from 'clsx';
 import {
-  MOBILE_TABLE_DESCRIPTION_CLASSNAMES,
-  MOBILE_TABLE_ROW_CLASSNAMES,
+  RESPONSIVE_TABLE_DESCRIPTION_CLASSNAMES,
+  RESPONSIVE_TABLE_ROW_CLASSNAMES,
+  TABLE_DESCRIPTION_CLASSNAMES,
+  TABLE_ROW_CLASSNAMES,
 } from '../tw_classnames';
 
 type Props<TData> = {
@@ -24,11 +26,11 @@ const TableRow = <TData extends object>({
         'border-gray-200 dark:border-gray-600',
         row.getCanSelect() &&
           row.getIsSelected() &&
-          'bg-gray-100 dark:bg-gray-6f00',
+          'bg-gray-100 dark:bg-gray-600',
         responsivenessType &&
           !viewType &&
-          MOBILE_TABLE_ROW_CLASSNAMES[responsivenessType],
-        viewType && MOBILE_TABLE_ROW_CLASSNAMES[viewType].replaceAll('sm:', ''),
+          RESPONSIVE_TABLE_ROW_CLASSNAMES[responsivenessType],
+        viewType && TABLE_ROW_CLASSNAMES[viewType],
       )}
     >
       {row.getVisibleCells().map((cell, idx: number) => (
@@ -39,12 +41,8 @@ const TableRow = <TData extends object>({
             'px-3.5 py-2 min-w-48 text-wrap border-gray-300 dark:border-gray-600',
             responsivenessType &&
               !viewType &&
-              MOBILE_TABLE_DESCRIPTION_CLASSNAMES[responsivenessType],
-            viewType &&
-              MOBILE_TABLE_DESCRIPTION_CLASSNAMES[viewType].replaceAll(
-                'sm:',
-                '',
-              ),
+              RESPONSIVE_TABLE_DESCRIPTION_CLASSNAMES[responsivenessType],
+            viewType && TABLE_DESCRIPTION_CLASSNAMES[viewType],
           )}
         >
           {idx === 0 && row.getCanSelect() && (
