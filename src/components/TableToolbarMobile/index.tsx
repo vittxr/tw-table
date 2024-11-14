@@ -6,6 +6,7 @@ import { useLabels } from '../../providers/LabelsProvider';
 
 type Props<TData> = {
   table: Table<TData>;
+  displayOnLargeScreens?: boolean;
 };
 
 /**
@@ -14,7 +15,10 @@ type Props<TData> = {
  * @param props - The component props.
  * @returns The rendered mobile table filter.
  */
-const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
+const TableToolbarMobile = <TData extends object>({
+  table,
+  displayOnLargeScreens = false,
+}: Props<TData>) => {
   const { texts } = useLabels();
   const headerGroups = table
     .getHeaderGroups()
@@ -28,7 +32,9 @@ const TableToolbarMobile = <TData extends object>({ table }: Props<TData>) => {
   );
 
   return (
-    <div className="w-full block sm:hidden space-y-2 my-2">
+    <div
+      className={`w-full block ${!displayOnLargeScreens && 'sm:hidden'} space-y-2 my-2`}
+    >
       <div className="w-full">
         <InputWithSelect
           id={'search'}

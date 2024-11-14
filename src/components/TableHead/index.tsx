@@ -8,10 +8,10 @@ import { ResponsivenessType } from '../types';
 
 type Props<TData> = {
   headerGroup: HeaderGroup<TData>;
-  responsivenessType?: ResponsivenessType;
   enableMultiRowSelection?: boolean | null;
   isAllRowsSelected?: boolean | null;
   toggleAllRowsSelectedHandler?: (event: unknown) => void;
+  // viewType?: ResponsivenessType;
 };
 
 const TableHead = <TData extends object>({
@@ -19,13 +19,19 @@ const TableHead = <TData extends object>({
   enableMultiRowSelection,
   isAllRowsSelected,
   toggleAllRowsSelectedHandler,
+  //  viewType,
 }: Props<TData>) => {
   const [targetSearchCol, setTargetSearchCol] = useState<string | null>(null);
   return (
     <>
       <tr
         key={headerGroup.id}
-        className={clsx('w-full', MOBILE_TABLE_ROW_CLASSNAMES)}
+        className={clsx(
+          'w-full',
+          // !viewType
+          //   ? MOBILE_TABLE_ROW_CLASSNAMES[viewType]
+          //   : MOBILE_TABLE_ROW_CLASSNAMES[viewType].replace('sm:', ''),
+        )}
       >
         {headerGroup.headers.map((header, idx) => (
           <th

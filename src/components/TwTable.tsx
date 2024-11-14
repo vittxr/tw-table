@@ -27,7 +27,7 @@ import TableRowSkeleton from './TableRowSkeleton';
 export interface TwTableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
-  responsivenessType?: ResponsivenessType; // I'll add more options in the future.
+  responsivenessType?: ResponsivenessType;
   serverSide?: boolean;
   pagination?: PaginationState;
   setPagination?: OnChangeFn<PaginationState> | undefined;
@@ -41,6 +41,7 @@ export interface TwTableProps<TData> {
   setSorting?: OnChangeFn<SortingState>;
   texts?: UITexts;
   isLoading?: boolean;
+  viewType?: ResponsivenessType; // this takes precedence over responsivenessType.
 }
 
 export const TwTable = <TData extends object>({
@@ -60,6 +61,7 @@ export const TwTable = <TData extends object>({
   setSorting,
   texts = uiTexts,
   isLoading = false,
+  viewType,
 }: TwTableProps<TData>) => {
   // states prefixed with undescore are used for client-side features.
   const [_columnFilters, _setColumnFilters] =
@@ -106,21 +108,28 @@ export const TwTable = <TData extends object>({
       <div className="flex flex-col flex-end bg-white dark:bg-gray-900 text-black dark:text-gray-300">
         <div className="overflow-x-auto">
           <div className="shadow overflow-x-auto sm:rounded-lg">
-            <TableToolbarMobile table={table} />
+            <TableToolbarMobile
+              table={table}
+              displayOnLargeScreens={
+                (viewType && viewType !== 'scroll') || false
+              }
+            />
 
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 relative">
               <thead
                 className={clsx(
                   'bg-gray-50 border',
                   responsivenessType &&
+                    !viewType &&
                     MOBILE_TABLE_HEAD_CLASSNAMES[responsivenessType],
+                  viewType &&
+                    MOBILE_TABLE_HEAD_CLASSNAMES[viewType].replace('sm:', ''),
                 )}
               >
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableHead
                     key={headerGroup.id}
                     headerGroup={headerGroup}
-                    responsivenessType={responsivenessType}
                     enableMultiRowSelection={enableMultiRowSelection}
                     isAllRowsSelected={
                       rowSelection && table.getIsAllRowsSelected()
@@ -154,6 +163,7 @@ export const TwTable = <TData extends object>({
                       <TableRow
                         key={row.id}
                         row={row}
+                        viewType={viewType}
                         responsivenessType={responsivenessType}
                       />
                     ))
