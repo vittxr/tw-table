@@ -36,6 +36,7 @@ const TableHead = <TData extends object>({
               setTargetSearchCol(null);
             }}
             scope="col"
+            title={header.column.columnDef.header?.toString()}
           >
             {targetSearchCol !== header.id && (
               <div className="flex justify-between items-center">
@@ -52,10 +53,12 @@ const TableHead = <TData extends object>({
                     </div>
                   )}
 
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext(),
-                )}
+                <div className="truncate mr-2">
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </div>
 
                 <div className="flex space-x-2">
                   {header.column.getCanFilter() && (
