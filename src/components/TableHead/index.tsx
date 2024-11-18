@@ -3,8 +3,6 @@ import { flexRender, HeaderGroup } from '@tanstack/react-table';
 import TableFilter from '../TableFilter';
 import Icon from '../../icons';
 import clsx from 'clsx';
-import { MOBILE_TABLE_ROW_CLASSNAMES } from '../tw_classnames';
-import { ResponsivenessType } from '../types';
 
 type Props<TData> = {
   headerGroup: HeaderGroup<TData>;
