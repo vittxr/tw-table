@@ -1,6 +1,6 @@
 export const CARD_TABLE_HEAD_CLASSNAMES =
   'border-none h-px m-negative-1 overflow-hidden p-0 absolute w-px';
-export const CARD_TABLE_ROW_CLASSNAMES = 'border block sm:table-row mb-2.5';
+export const CARD_TABLE_ROW_CLASSNAMES = 'border block mt-2.5';
 export const CARD_TABLE_DESCRIPTiON_CLASSNAMES =
   'border-b flex justify-between items-center text-right before:content-[attr(data-label)] before:float-left before:font-bold';
 
@@ -22,7 +22,7 @@ export const RESPONSIVE_TABLE_HEAD_CLASSNAMES = {
   scroll: '',
 };
 export const RESPONSIVE_TABLE_ROW_CLASSNAMES = {
-  card: CARD_TABLE_ROW_CLASSNAMES + ' sm:border-none sm:table-row sm:mb-0',
+  card: CARD_TABLE_ROW_CLASSNAMES + ' sm:border-none sm:table-row sm:mt-0',
   scroll: '',
 };
 export const RESPONSIVE_TABLE_DESCRIPTION_CLASSNAMES = {
