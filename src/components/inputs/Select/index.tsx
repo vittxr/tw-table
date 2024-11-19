@@ -10,7 +10,7 @@ const Select = ({ label, id, options, ...rest }: Props) => {
   return (
     <div>
       {label && (
-        <label htmlFor={id} className="block text-sm font-medium">
+        <label htmlFor={id} className="block text-sm font-medium truncate">
           {label}
         </label>
       )}
