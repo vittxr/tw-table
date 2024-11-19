@@ -111,11 +111,11 @@ export const TwTable = <TData extends object>({
       <div className="flex flex-col flex-end bg-white dark:bg-gray-900 text-black dark:text-gray-300">
         <div className="overflow-x-auto">
           <div className="shadow overflow-x-auto sm:rounded-lg">
+            {/** TODO: Consider refactoring the TableToolbarMobile component, as it’s unclear that it is displayed when the developer manually sets the viewType. Additionally, it is not scalable and could become unwieldy if more viewTypes are added. */}
             <TableToolbarMobile
               table={table}
-              displayOnLargeScreens={
-                (viewType && viewType !== 'scroll') || false
-              }
+              forceHidden={(viewType && viewType === 'scroll') || false}
+              forceShow={(viewType && viewType === 'card') || false}
             />
 
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600 relative">

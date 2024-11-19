@@ -6,7 +6,8 @@ import { useLabels } from '../../providers/LabelsProvider';
 
 type Props<TData> = {
   table: Table<TData>;
-  displayOnLargeScreens?: boolean;
+  forceHidden?: boolean;
+  forceShow?: boolean;
 };
 
 /**
@@ -17,7 +18,8 @@ type Props<TData> = {
  */
 const TableToolbarMobile = <TData extends object>({
   table,
-  displayOnLargeScreens = false,
+  forceHidden = false,
+  forceShow = false,
 }: Props<TData>) => {
   const { texts } = useLabels();
   const headerGroups = table
@@ -31,10 +33,13 @@ const TableToolbarMobile = <TData extends object>({
     header.column.getCanSort(),
   );
 
+  const responsivenessClassname = forceShow
+    ? 'block'
+    : forceHidden
+      ? 'hidden'
+      : 'sm:hidden';
   return (
-    <div
-      className={`w-full block ${!displayOnLargeScreens && 'sm:hidden'} space-y-2 my-2`}
-    >
+    <div className={`w-full block ${responsivenessClassname} space-y-2 my-2`}>
       <div className="w-full">
         <InputWithSelect
           id={'search'}
@@ -45,8 +50,6 @@ const TableToolbarMobile = <TData extends object>({
             label: header.column.columnDef.header as string,
           }))}
           onChange={(selectedId: string, inputValue: string) => {
-            console.log(selectedId, inputValue);
-            console.log('searchableColumns', searchableColumns);
             const header = searchableColumns.find(
               (header) => header.id === selectedId,
             );
