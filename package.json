@@ -73,7 +73,7 @@
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
-    "husky": "^9.1.6",
+    "husky": "^9.1.7",
     "postcss": "^8.4.49",
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
@@ -82,14 +82,14 @@
     "react-is": "^18.3.1",
     "rollup-plugin-postcss": "^4.0.2",
     "size-limit": "^11.1.6",
-    "tailwindcss": "^3.4.14",
+    "tailwindcss": "^3.4.15",
     "tsdx": "^0.14.1",
     "tslib": "^2.8.1",
     "typescript": "^5.6.3",
     "vite": "^5.4.11"
   },
   "peerDependencies": {
-    "@tanstack/react-table": "^8.20.1",
+    "@tanstack/react-table": "^8.20.5",
     "react": ">=18.3.1"
   }
 }
