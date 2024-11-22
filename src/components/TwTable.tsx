@@ -12,6 +12,7 @@ import {
   PaginationState,
   OnChangeFn,
   RowSelectionState,
+  VisibilityState,
 } from '@tanstack/react-table';
 import TableRow from './TableRow';
 import TableHead from './TableHead';
@@ -45,6 +46,7 @@ export interface TwTableProps<TData> {
   texts?: UITexts;
   isLoading?: boolean;
   viewType?: ResponsivenessType; // this takes precedence over responsivenessType.
+  columnVisibility?: VisibilityState;
 }
 
 export const TwTable = <TData extends object>({
@@ -65,6 +67,7 @@ export const TwTable = <TData extends object>({
   texts = uiTexts,
   isLoading = false,
   viewType,
+  columnVisibility,
 }: TwTableProps<TData>) => {
   // states prefixed with undescore are used for client-side features.
   const [_columnFilters, _setColumnFilters] =
@@ -98,6 +101,7 @@ export const TwTable = <TData extends object>({
         ? _columnFilters
         : columnFilters || _columnFilters,
       rowSelection: rowSelection,
+      columnVisibility: columnVisibility,
     },
     rowCount: !serverSide ? undefined : rowCount,
     enableSortingRemoval: false,
