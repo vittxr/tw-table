@@ -3,6 +3,7 @@ import InputWithSelect from '../inputs/InputWithSelect';
 import { SortingState, Table } from '@tanstack/react-table';
 import Select from '../inputs/Select';
 import { useLabels } from '../../providers/LabelsProvider';
+import { isNumeric } from '../../utils/functions';
 
 type Props<TData> = {
   table: Table<TData>;
@@ -53,10 +54,15 @@ const TableToolbarMobile = <TData extends object>({
             const header = searchableColumns.find(
               (header) => header.id === selectedId,
             );
+            console.log('');
             if (header) {
               // since we don't support multi-column filtering yet, we clear the previous filters.
               table.setColumnFilters([]);
-              header.column.setFilterValue(inputValue);
+
+              const _inputValue = isNumeric(inputValue)
+                ? Number(inputValue)
+                : inputValue;
+              header.column.setFilterValue(_inputValue);
             }
           }}
         />

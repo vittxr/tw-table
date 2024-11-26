@@ -25,8 +25,9 @@ import { ResponsivenessType } from './types';
 import TableToolbarMobile from './TableToolbarMobile';
 import { UITexts, uiTexts } from '../constants/texts';
 import LabelsProvider from '../providers/LabelsProvider';
-import { deepMerge } from '../utils/functions/deepMerge';
+import { deepMerge } from '../utils/functions';
 import TableRowSkeleton from './TableRowSkeleton';
+import { numericFilterFn } from '../utils/filters';
 
 export interface TwTableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
@@ -108,9 +109,23 @@ export const TwTable = <TData extends object>({
     manualPagination: serverSide,
     enableRowSelection: rowSelection ? true : false,
     enableMultiRowSelection: enableMultiRowSelection,
+    defaultColumn: {
+      filterFn: (row, columnId, filterValue) => {
+        const rowValue = row.getValue(columnId);
+
+        // Check if the value is numeric
+        if (typeof rowValue === 'number') {
+          return numericFilterFn(row, columnId, filterValue);
+        }
+
+        // Fallback to default behavior (string filtering)
+        return String(rowValue)
+          .toLowerCase()
+          .includes(String(filterValue).toLowerCase());
+      },
+    },
   });
 
-  console.log('_columnFilters', _columnFilters);
   return (
     <LabelsProvider texts={_texts}>
       <div className="flex flex-col flex-end bg-white dark:bg-gray-900 text-black dark:text-gray-300">

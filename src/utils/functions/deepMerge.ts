@@ -2,7 +2,7 @@ function isObject(item: unknown): item is object {
   return item !== null && typeof item === 'object';
 }
 
-export function deepMerge<T extends object, U extends object>(
+export default function deepMerge<T extends object, U extends object>(
   target: T,
   source: U,
 ): T & U {

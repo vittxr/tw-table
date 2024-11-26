@@ -43,13 +43,13 @@ const columns: ColumnDef<Anime>[] = [
   {
     header: 'Type',
     accessorKey: 'type',
-    enableSorting: false,
+    enableSorting: true,
     enableColumnFilter: false,
   },
   {
     header: 'Source',
     accessorKey: 'source',
-    enableSorting: false,
+    enableSorting: true,
     enableColumnFilter: false,
   },
   {
@@ -92,7 +92,6 @@ export const TableStory = () => {
     });
   }, [sorting]);
 
-  console.log('data', data);
   return (
     <TwTable
       columns={columns}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Column } from '@tanstack/react-table';
 import Input from '../inputs/Input';
+import { isNumeric } from '../../utils/functions';
 
 // Define an extended type for ColumnMeta that includes filterVariant
 interface ExtendedColumnMeta {
@@ -15,6 +16,7 @@ export default function TableFilter<TData>({
   const columnFilterValue = column.getFilterValue() as string;
   const { filterVariant } = (column.columnDef.meta as ExtendedColumnMeta) ?? {};
 
+  console.log('columnFilterValue', columnFilterValue);
   return filterVariant === 'range' ? (
     <div>
       <p>not implemented</p>
@@ -33,7 +35,7 @@ export default function TableFilter<TData>({
       }}
       placeholder={`${column.columnDef.header}...`}
       type="text"
-      value={(columnFilterValue ?? '') as string}
+      value={(columnFilterValue?.toString() ?? '') as string}
       autoFocus={true}
     />
   );

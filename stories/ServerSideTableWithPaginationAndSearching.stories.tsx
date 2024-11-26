@@ -74,7 +74,7 @@ const columns: ColumnDef<Book>[] = [
     header: 'Download Count',
     accessorKey: 'download_count',
     enableSorting: false,
-    enableColumnFilter: false,
+    enableColumnFilter: true,
   },
 ];
 
