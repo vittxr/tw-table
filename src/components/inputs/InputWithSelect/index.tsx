@@ -26,10 +26,10 @@ export default function InputWithSelect({
   useEffect(() => {
     if (!selectedId) return;
     onChange(selectedId, inputValue);
-  }, [inputValue, setSelectedId]);
+  }, [inputValue, selectedId, setSelectedId]);
 
   useEffect(() => {
-    if (isOptionsEmpty) return;
+    if (isOptionsEmpty || selectedId) return;
     setSelectedId(options[0].value);
   }, [options]);
 

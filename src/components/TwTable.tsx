@@ -110,6 +110,7 @@ export const TwTable = <TData extends object>({
     enableMultiRowSelection: enableMultiRowSelection,
   });
 
+  console.log('_columnFilters', _columnFilters);
   return (
     <LabelsProvider texts={_texts}>
       <div className="flex flex-col flex-end bg-white dark:bg-gray-900 text-black dark:text-gray-300">
