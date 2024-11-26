@@ -1,7 +1,6 @@
 import React from 'react';
 import { Column } from '@tanstack/react-table';
 import Input from '../inputs/Input';
-import { isNumeric } from '../../utils/functions';
 
 // Define an extended type for ColumnMeta that includes filterVariant
 interface ExtendedColumnMeta {
