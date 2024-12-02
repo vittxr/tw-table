@@ -3,10 +3,12 @@ export const CARD_TABLE_HEAD_CLASSNAMES =
 export const CARD_TABLE_ROW_CLASSNAMES = 'border block mt-2.5';
 export const CARD_TABLE_DESCRIPTiON_CLASSNAMES =
   'border-b flex justify-between items-center text-right before:content-[attr(data-label)] before:float-left before:font-bold';
+export const SCROLL_TABLE_HEAD_CLASSNAMES = 'border-none';
+export const SCROLL_TABLE_DESCRIPTION_CLASSNAMES = 'border-b';
 
 export const TABLE_HEAD_CLASSNAMES = {
   card: CARD_TABLE_HEAD_CLASSNAMES,
-  scroll: '',
+  scroll: SCROLL_TABLE_HEAD_CLASSNAMES,
 };
 export const TABLE_ROW_CLASSNAMES = {
   card: CARD_TABLE_ROW_CLASSNAMES,
@@ -14,7 +16,7 @@ export const TABLE_ROW_CLASSNAMES = {
 };
 export const TABLE_DESCRIPTION_CLASSNAMES = {
   card: CARD_TABLE_DESCRIPTiON_CLASSNAMES,
-  scroll: '',
+  scroll: SCROLL_TABLE_DESCRIPTION_CLASSNAMES,
 };
 
 export const RESPONSIVE_TABLE_HEAD_CLASSNAMES = {
