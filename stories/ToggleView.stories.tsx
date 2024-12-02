@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { TwTable } from '../src';
-import { ColumnDef } from '@tanstack/react-table';
+import { ColumnDef, RowSelectionState } from '@tanstack/react-table';
 import { users } from './mocks/users';
 import { ResponsivenessType } from '../src/components/types';
 
@@ -71,6 +71,7 @@ export default {
 
 export const TableStory = () => {
   const [view, setView] = React.useState<ResponsivenessType>();
+  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
 
   return (
     <div className="relative min-h-screen">
@@ -83,7 +84,13 @@ export const TableStory = () => {
         </select>
       </div>
 
-      <TwTable columns={columns} data={users} viewType={view} />
+      <TwTable
+        columns={columns}
+        data={users}
+        viewType={view}
+        rowSelection={rowSelection}
+        setRowSelection={setRowSelection}
+      />
     </div>
   );
 };

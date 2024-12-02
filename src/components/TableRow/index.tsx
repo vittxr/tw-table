@@ -4,8 +4,10 @@ import { ResponsivenessType } from '../../components/types';
 import clsx from 'clsx';
 import {
   RESPONSIVE_TABLE_DESCRIPTION_CLASSNAMES,
+  RESPONSIVE_TABLE_ROW_CHECKBOX_CLASSNAMES,
   RESPONSIVE_TABLE_ROW_CLASSNAMES,
   TABLE_DESCRIPTION_CLASSNAMES,
+  TABLE_ROW_CHECKBOX_CLASSNAMES,
   TABLE_ROW_CLASSNAMES,
 } from '../tw_classnames';
 
@@ -48,7 +50,12 @@ const TableRow = <TData extends object>({
           {idx === 0 && row.getCanSelect() && (
             <input
               type="checkbox"
-              className="mr-2"
+              className={clsx(
+                responsivenessType &&
+                  !viewType &&
+                  RESPONSIVE_TABLE_ROW_CHECKBOX_CLASSNAMES[responsivenessType],
+                viewType && TABLE_ROW_CHECKBOX_CLASSNAMES[viewType],
+              )}
               checked={row.getIsSelected()}
               onChange={row.getToggleSelectedHandler()}
             />
