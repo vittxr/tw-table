@@ -54,7 +54,6 @@ const TableToolbarMobile = <TData extends object>({
             const header = searchableColumns.find(
               (header) => header.id === selectedId,
             );
-            console.log('');
             if (header) {
               // since we don't support multi-column filtering yet, we clear the previous filters.
               table.setColumnFilters([]);
