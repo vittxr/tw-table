@@ -62,7 +62,7 @@
     "@storybook/addon-interactions": "^8.4.4",
     "@storybook/addon-links": "^8.4.4",
     "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/addon-webpack5-compiler-babel": "3.0.5",
+    "@storybook/addon-webpack5-compiler-babel": "3.0.6",
     "@storybook/addons": "^7.6.17",
     "@storybook/builder-vite": "^8.4.4",
     "@storybook/cli": "^8.4.4",
