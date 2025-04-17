@@ -8,9 +8,6 @@ jobs:
       issues: write
       contents: read
     steps:
-      - name: "Checkout Repository"
-        uses: "actions/checkout@v4"
-
       - name: Get latest commit message
         id: get_commit
         run: |
@@ -25,7 +22,10 @@ jobs:
         run: |
           echo "Skipping job due to commit message: ${{ steps.get_commit.outputs.message }}"
           exit 0
-  
+
+      - name: "Checkout Repository"
+        uses: "actions/checkout@v4"
+
       - name: "TODO to Issue"
         uses: "alstr/todo-to-issue-action@v5"
         with: 
