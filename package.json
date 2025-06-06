@@ -66,7 +66,7 @@
     "@storybook/addons": "^7.6.17",
     "@storybook/builder-vite": "^8.4.4",
     "@storybook/cli": "^8.4.4",
-    "@storybook/react": "^8.4.4",
+    "@storybook/react": "^9.0.5",
     "@storybook/react-vite": "^8.4.4",
     "@storybook/test": "^8.4.4",
     "@types/react": "^19.0.7",
