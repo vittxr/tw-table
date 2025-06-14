@@ -65,7 +65,7 @@
     "@storybook/addon-webpack5-compiler-babel": "3.0.6",
     "@storybook/addons": "^7.6.17",
     "@storybook/builder-vite": "^9.0.6",
-    "@storybook/cli": "^8.4.4",
+    "@storybook/cli": "^9.0.9",
     "@storybook/react": "^9.0.6",
     "@storybook/react-vite": "^8.4.4",
     "@storybook/test": "^8.4.4",
